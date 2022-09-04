@@ -1,8 +1,15 @@
 #include <SPI.h>
-#include <nRF24L01.h>
 #include <RF24.h>
+#include <nRF24L01.h>
+#include <printf.h>
 
-RF24 radio(15, 2); // SPI 버스에 nRF24L01 라디오를 설정하기 위해 CE, CSN 선언.
+// SPI 버스에 nRF24L01 라디오를 설정하기 위해 CE, CSN 선언.
+#define Rx_CE 15
+#define Rx_SCN 2
+//optionally, reduce the payload size.  seems to improve reliability.
+#define Payload_size 8
+
+RF24 radio(Rx_CE, Rx_SCN); 
 const byte address[6] = "00001"; //주소값을 5가지 문자열로 변경할 수 있으며, 송신기과 수신기가 동일한 주소로 해야됨.
 
 void setup() {
@@ -10,8 +17,10 @@ void setup() {
   Serial.begin(9600);
   Serial.println("Rx Start");
 
+
   radio.begin();
-  radio.setPayloadSize(16);         //optionally, reduce the payload size.  seems to improve reliability.
+
+  radio.setPayloadSize(Payload_size);
   radio.openReadingPipe(0, address);
   radio.setPALevel(RF24_PA_HIGH);
   //전원공급에 관한 파워레벨을 설정합니다. 모듈 사이가 가까우면 최소로 설정합니다.
@@ -26,7 +35,7 @@ void setup() {
 
 void loop() {
   if (radio.available()) {
-    char readBuffer[16] = "";
+    char readBuffer[Payload_size] = "";
     radio.read(&readBuffer, sizeof(readBuffer));
     Serial.println(readBuffer);
     // char text[32] = "";
