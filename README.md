@@ -2,6 +2,13 @@
 
 2022년 임베디드 소프트웨어 경진대회 참가 관리용 git
 
+## 시스템 설정
+
+* 보드 매니저
+
+  * <https://arduino.esp8266.com/stable/package_esp8266com_index.json>
+  * <https://github.com/stm32duino/BoardManagerFiles/raw/main/package_stmicroelectronics_index.json>
+
 ## 내가 한 것들
 
 * 두 보드 간 RF 통신

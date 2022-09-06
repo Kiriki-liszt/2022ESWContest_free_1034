@@ -1,5 +1,5 @@
 {
-    "sketch": "nRF24L01 send\\nRF24L01 send.ino",
+    "sketch": "nRF24L01_TX\\nRF24L01_TX.ino",
     "configuration": "pnum=NUCLEO_F103RB,upload_method=MassStorage,xserial=generic,usb=none,xusb=FS,opt=osstd,dbg=none,rtlib=nano",
     "board": "STMicroelectronics:stm32:Nucleo_64",
     "port": "COM3"

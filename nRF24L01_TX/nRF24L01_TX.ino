@@ -1,3 +1,7 @@
+/*
+arduino-cli compile -b STMicroelectronics:stm32:Nucleo_64 "C:\Users\yoon\Documents\Arduino\Projects\Embedded_software_Contest_2022\nRF24L01_TX\nRF24L01_TX.ino" --board-options "pnum=NUCLEO_F103RB,upload_method=MassStorage,xserial=generic,usb=none,xusb=FS,opt=osstd,dbg=none,rtlib=nano" -u -p COM3
+*/
+
 #include <SPI.h>
 #include <RF24.h>
 #include <nRF24L01.h>
