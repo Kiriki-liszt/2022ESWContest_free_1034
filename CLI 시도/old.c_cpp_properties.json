@@ -1,0 +1,64 @@
+{
+    "version": 4,
+    "configurations": [
+        {
+            "name": "Win32",
+            "compilerPath": "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.33.31629/bin/Hostx64/x64/cl.exe",
+            "compilerArgs": [],
+            "intelliSenseMode": "msvc-x64",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:/Users/yoon/AppData/Local/Arduino15/packages/STMicroelectronics/hardware/stm32/2.3.0/cores/arduino/stm32/**",
+                "C:/Users/yoon/AppData/Local/Arduino15/packages/esp8266/hardware/esp8266/3.0.2/cores/esp8266/**",
+                "C:/Users/yoon/AppData/Local/Arduino15/packages/**"
+            ],
+            "forcedInclude": [],
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": false,
+                "path": [
+                    "C:/Users/yoon/Documents/Arduino/libraries",
+                    "C:/Users/yoon/AppData/Local/Arduino15/packages/arduino/hardware/avr/1.8.5/libraries",
+                    "C:/Users/yoon/AppData/Local/Arduino15/packages/esp8266/hardware/esp8266/3.0.2/libraries",
+                    "C:/Users/yoon/AppData/Local/Arduino15/packages/STMicroelectronics/hardware/stm32/2.3.0/libraries",
+                    "C:/Users/yoon/AppData/Local/Arduino15/packages"
+                ]
+            }
+        },
+        {
+            "name": "Arduino",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:/Users/yoon/AppData/Local/Arduino15/packages/STMicroelectronics/hardware/stm32/2.3.0/cores/arduino/stm32/**",
+                "C:/Users/yoon/AppData/Local/Arduino15/packages/esp8266/hardware/esp8266/3.0.2/cores/esp8266/**",
+                "C:/Users/yoon/AppData/Local/Arduino15/packages/**"
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": false,
+                "path": [
+                    "C:/Users/yoon/Documents/Arduino/libraries",
+                    "C:/Users/yoon/AppData/Local/Arduino15/packages/arduino/hardware/avr/1.8.5/libraries",
+                    "C:/Users/yoon/AppData/Local/Arduino15/packages/esp8266/hardware/esp8266/3.0.2/libraries",
+                    "C:/Users/yoon/AppData/Local/Arduino15/packages/STMicroelectronics/hardware/stm32/2.3.0/libraries",
+                    "C:/Users/yoon/AppData/Local/Arduino15/packages"
+                ]
+            },
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "windowsSdkVersion": "10.0.19041.0",
+            "compilerPath": "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.33.31629/bin/Hostx64/x64/cl.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "msvc-x64"
+        }
+    ]
+}
