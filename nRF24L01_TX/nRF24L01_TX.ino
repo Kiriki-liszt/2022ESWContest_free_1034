@@ -4,13 +4,22 @@
 #include <printf.h>
 
 // SPI 버스에 nRF24L01 라디오를 설정하기 위해 CE, CSN 선언.
+// STM Tx
 #define Tx_CE 10
 #define Tx_SCN 8
+// nodeMCU Rx
+#define Rx_CE 15
+#define Rx_SCN 2
+
 //optionally, reduce the payload size.  seems to improve reliability.
 #define Payload_size 8
 
+//주소값을 5가지 문자열로 변경할 수 있으며, 송신기와 수신기가 동일한 주소로 해야됨.
+const byte address[6] = "00001";
+
+
+
 RF24 radio(Tx_CE, Tx_SCN); 
-const byte address[6] = "00001";          //주소값을 5가지 문자열로 변경할 수 있으며, 송신기와 수신기가 동일한 주소로 해야됨.
 
 void setup() {
 
@@ -43,7 +52,7 @@ char sendBuffer[Payload_size];
 // uint8_t counter = 1;
 // 상태는 총 4개 : 00, 01, 10, 11
 // 상황은 앞에서부터 차례대로 우회전, 비보호, 로터리 등등
-unsigned char ss;
+unsigned char send_buff;
 unsigned char right_turn;
 unsigned char left_turn;
 unsigned char unused_1;
@@ -63,18 +72,7 @@ void loop() {
   unused_1 = 0;
   unused_2 = 3;
 
-
-
-  ss = right_turn;
-
-  left_turn <<= 2;
-  ss |= left_turn;
-
-  unused_1 <<= 4;
-  ss |= unused_1;
-
-  unused_2 <<= 6;
-  ss |= unused_2;
+  make_message();
 
   Serial.println("start");
 
@@ -89,21 +87,19 @@ void loop() {
   Serial.print("u2 : ");
   Serial.println(unused_2);
 
-
   radio.write( &ss, sizeof(ss) );
   Serial.println("end\n");
   delay(1000); // Every 1sec
 
 }
 
-/*
+void make_message() {
+  left_turn <<= 2;
+  unused_1  <<= 4;
+  unused_2  <<= 6;
 
-비트 char 테이블 
-
-3   : 00 00 00 11 : &= 3
-12  : 00 00 11 00 : &= 12  , >>= 2 
-48  : 00 11 00 00 : &= 48  , >>= 4
-192 : 11 00 00 00 : &= 192 , >>= 6
-
-
-*/
+  send_buff = right_turn;
+  send_buff |= left_turn;
+  send_buff |= unused_1;
+  send_buff |= unused_2;
+}

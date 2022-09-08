@@ -8,19 +8,30 @@
 #include <string.h>
 
 // SPI 버스에 nRF24L01 라디오를 설정하기 위해 CE, CSN 선언.
+// STM Tx
+#define Tx_CE 10
+#define Tx_SCN 8
+// nodeMCU Rx
 #define Rx_CE 15
 #define Rx_SCN 2
+
 //optionally, reduce the payload size.  seems to improve reliability.
 #define Payload_size 8
 
-RF24 radio(Rx_CE, Rx_SCN); 
-const byte address[6] = "00001";            //주소값을 5가지 문자열로 변경할 수 있으며, 송신기과 수신기가 동일한 주소로 해야됨.
+//주소값을 5가지 문자열로 변경할 수 있으며, 송신기와 수신기가 동일한 주소로 해야됨.
+const byte address[6] = "00001";
 
-#line 17 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\nRF24L01_RX_1\\nRF24L01_RX_1.ino"
+
+
+RF24 radio(Rx_CE, Rx_SCN); 
+
+#line 26 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\nRF24L01_RX_1\\nRF24L01_RX_1.ino"
 void setup();
-#line 45 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\nRF24L01_RX_1\\nRF24L01_RX_1.ino"
+#line 54 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\nRF24L01_RX_1\\nRF24L01_RX_1.ino"
 void loop();
-#line 17 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\nRF24L01_RX_1\\nRF24L01_RX_1.ino"
+#line 79 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\nRF24L01_RX_1\\nRF24L01_RX_1.ino"
+void message_parsing();
+#line 26 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\nRF24L01_RX_1\\nRF24L01_RX_1.ino"
 void setup() {
 
   Serial.begin(9600);
@@ -42,7 +53,7 @@ void setup() {
   radio.startListening(); //모듈을 수신기로 설정
 }
 
-unsigned char ss;
+unsigned char read_buff;
 unsigned char right_turn;
 unsigned char left_turn;
 unsigned char unused_1;
@@ -59,34 +70,31 @@ void loop() {
     // Serial.println(text);
 
     Serial.println("start");
-
-
-    radio.read(&ss, sizeof(ss));
-    Serial.print("ss : ");
-    Serial.println(ss);
-
-    right_turn = ss & 3;
+    Serial.print("rb : ");
+    Serial.println(read_buff);
     Serial.print("rr : ");
     Serial.println(right_turn);
-
-    left_turn = ss & 12;
-    left_turn >>= 2;
     Serial.print("ll : ");
     Serial.println(left_turn);
-
-    unused_1 = ss & 48;
-    unused_1 >>= 4;
     Serial.print("u1 : ");
     Serial.println(unused_1);
-
-    unused_2 = ss & 192;
-    unused_2 >>= 6;
     Serial.print("u2 : ");
     Serial.println(unused_2);
-
     Serial.println("end\n");
 
   }
 }
 
+void message_parsing() {
+  radio.read(&read_buff, sizeof(read_buff));
 
+  right_turn  = read_buff & 3;
+  left_turn   = read_buff & 12;
+  unused_1    = read_buff & 48;
+  unused_2    = read_buff & 192;
+
+  left_turn >>= 2;
+  unused_1  >>= 4;
+  unused_2  >>= 6;
+
+}
