@@ -1,7 +1,7 @@
 {
-    "port": "COM3",
-    "configuration": "pnum=NUCLEO_F103RB,upload_method=MassStorage,xserial=generic,usb=none,xusb=FS,opt=osstd,dbg=none,rtlib=nano",
-    "board": "STMicroelectronics:stm32:Nucleo_64",
-    "sketch": "nRF24L01_TX\\nRF24L01_TX.ino",
+    "port": "COM5",
+    "configuration": "xtal=80,vt=flash,exception=disabled,stacksmash=disabled,ssl=all,mmu=3232,non32xfer=fast,eesz=4M2M,led=2,ip=lm2f,dbg=Disabled,lvl=None____,wipe=none,baud=115200",
+    "board": "esp8266:esp8266:nodemcuv2",
+    "sketch": "nRF24L01_RX_1\\nRF24L01_RX_1.ino",
     "output": "./build"
 }
