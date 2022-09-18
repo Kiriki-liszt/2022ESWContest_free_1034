@@ -1,12 +1,12 @@
 {
   "additionalFiles": "",
-  "builtInLibrariesFolders": "C:\\Program Files (x86)\\Arduino\\libraries",
-  "builtInToolsFolders": "C:\\Program Files (x86)\\Arduino\\tools-builder,C:\\Program Files (x86)\\Arduino\\hardware\\tools\\avr,C:\\Users\\yoon\\AppData\\Local\\Arduino15\\packages",
+  "builtInLibrariesFolders": "/home/yoon/arduino-1.8.19/libraries",
+  "builtInToolsFolders": "/home/yoon/arduino-1.8.19/tools-builder,/home/yoon/arduino-1.8.19/hardware/tools/avr,/home/yoon/.arduino15/packages",
   "compiler.optimization_flags": "",
-  "customBuildProperties": "build.path=c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\build,build.warn_data_percentage=75,runtime.tools.CMSIS.path=C:\\Users\\yoon\\AppData\\Local\\Arduino15\\packages\\STMicroelectronics\\tools\\CMSIS\\5.7.0,runtime.tools.CMSIS-5.7.0.path=C:\\Users\\yoon\\AppData\\Local\\Arduino15\\packages\\STMicroelectronics\\tools\\CMSIS\\5.7.0,runtime.tools.xpack-arm-none-eabi-gcc.path=C:\\Users\\yoon\\AppData\\Local\\Arduino15\\packages\\STMicroelectronics\\tools\\xpack-arm-none-eabi-gcc\\10.3.1-2.3,runtime.tools.xpack-arm-none-eabi-gcc-10.3.1-2.3.path=C:\\Users\\yoon\\AppData\\Local\\Arduino15\\packages\\STMicroelectronics\\tools\\xpack-arm-none-eabi-gcc\\10.3.1-2.3,runtime.tools.STM32Tools.path=C:\\Users\\yoon\\AppData\\Local\\Arduino15\\packages\\STMicroelectronics\\tools\\STM32Tools\\2.1.1,runtime.tools.STM32Tools-2.1.1.path=C:\\Users\\yoon\\AppData\\Local\\Arduino15\\packages\\STMicroelectronics\\tools\\STM32Tools\\2.1.1",
+  "customBuildProperties": "build.path=/home/yoon/Documents/Arduino Project/Embedded_software_Contest_2022/build,build.warn_data_percentage=75,runtime.tools.STM32Tools.path=/home/yoon/.arduino15/packages/STMicroelectronics/tools/STM32Tools/2.1.1,runtime.tools.STM32Tools-2.1.1.path=/home/yoon/.arduino15/packages/STMicroelectronics/tools/STM32Tools/2.1.1,runtime.tools.xpack-arm-none-eabi-gcc.path=/home/yoon/.arduino15/packages/STMicroelectronics/tools/xpack-arm-none-eabi-gcc/10.3.1-2.3,runtime.tools.xpack-arm-none-eabi-gcc-10.3.1-2.3.path=/home/yoon/.arduino15/packages/STMicroelectronics/tools/xpack-arm-none-eabi-gcc/10.3.1-2.3,runtime.tools.CMSIS.path=/home/yoon/.arduino15/packages/STMicroelectronics/tools/CMSIS/5.7.0,runtime.tools.CMSIS-5.7.0.path=/home/yoon/.arduino15/packages/STMicroelectronics/tools/CMSIS/5.7.0",
   "fqbn": "STMicroelectronics:stm32:Nucleo_64:pnum=NUCLEO_F103RB,upload_method=MassStorage,xserial=generic,usb=none,xusb=FS,opt=osstd,dbg=none,rtlib=nano",
-  "hardwareFolders": "C:\\Program Files (x86)\\Arduino\\hardware,C:\\Users\\yoon\\AppData\\Local\\Arduino15\\packages",
-  "otherLibrariesFolders": "C:\\Users\\yoon\\Documents\\Arduino\\libraries",
+  "hardwareFolders": "/home/yoon/arduino-1.8.19/hardware,/home/yoon/.arduino15/packages",
+  "otherLibrariesFolders": "/home/yoon/Arduino/libraries",
   "runtime.ide.version": "10819",
-  "sketchLocation": "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\nRF24L01_TX\\nRF24L01_TX.ino"
+  "sketchLocation": "/home/yoon/Documents/Arduino Project/Embedded_software_Contest_2022/nRF24L01_TX/nRF24L01_TX.ino"
 }

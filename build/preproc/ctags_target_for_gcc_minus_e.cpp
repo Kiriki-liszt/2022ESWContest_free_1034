@@ -1,8 +1,8 @@
-# 1 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\nRF24L01_TX\\nRF24L01_TX.ino"
-# 2 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\nRF24L01_TX\\nRF24L01_TX.ino" 2
-# 3 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\nRF24L01_TX\\nRF24L01_TX.ino" 2
-# 4 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\nRF24L01_TX\\nRF24L01_TX.ino" 2
-# 5 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\nRF24L01_TX\\nRF24L01_TX.ino" 2
+# 1 "/home/yoon/Documents/Arduino Project/Embedded_software_Contest_2022/nRF24L01_TX/nRF24L01_TX.ino"
+# 2 "/home/yoon/Documents/Arduino Project/Embedded_software_Contest_2022/nRF24L01_TX/nRF24L01_TX.ino" 2
+# 3 "/home/yoon/Documents/Arduino Project/Embedded_software_Contest_2022/nRF24L01_TX/nRF24L01_TX.ino" 2
+# 4 "/home/yoon/Documents/Arduino Project/Embedded_software_Contest_2022/nRF24L01_TX/nRF24L01_TX.ino" 2
+# 5 "/home/yoon/Documents/Arduino Project/Embedded_software_Contest_2022/nRF24L01_TX/nRF24L01_TX.ino" 2
 
 // SPI 버스에 nRF24L01 라디오를 설정하기 위해 CE, CSN 선언.
 // STM Tx

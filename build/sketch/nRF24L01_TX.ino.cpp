@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#line 1 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\nRF24L01_TX\\nRF24L01_TX.ino"
+#line 1 "/home/yoon/Documents/Arduino Project/Embedded_software_Contest_2022/nRF24L01_TX/nRF24L01_TX.ino"
 #include	<SPI.h>
 #include	<RF24.h>
 #include	<nRF24L01.h>
@@ -26,15 +26,15 @@ const byte address[6] = "00001";
 
 RF24 radio(Tx_CE, Tx_SCN); 
 
-#line 27 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\nRF24L01_TX\\nRF24L01_TX.ino"
+#line 27 "/home/yoon/Documents/Arduino Project/Embedded_software_Contest_2022/nRF24L01_TX/nRF24L01_TX.ino"
 void setup();
-#line 72 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\nRF24L01_TX\\nRF24L01_TX.ino"
+#line 72 "/home/yoon/Documents/Arduino Project/Embedded_software_Contest_2022/nRF24L01_TX/nRF24L01_TX.ino"
 void loop();
-#line 117 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\nRF24L01_TX\\nRF24L01_TX.ino"
+#line 117 "/home/yoon/Documents/Arduino Project/Embedded_software_Contest_2022/nRF24L01_TX/nRF24L01_TX.ino"
 void make_message();
-#line 128 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\nRF24L01_TX\\nRF24L01_TX.ino"
+#line 128 "/home/yoon/Documents/Arduino Project/Embedded_software_Contest_2022/nRF24L01_TX/nRF24L01_TX.ino"
 void prnt_message();
-#line 27 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\nRF24L01_TX\\nRF24L01_TX.ino"
+#line 27 "/home/yoon/Documents/Arduino Project/Embedded_software_Contest_2022/nRF24L01_TX/nRF24L01_TX.ino"
 void setup() {
 
 	Serial.begin(9600);

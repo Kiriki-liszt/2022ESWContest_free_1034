@@ -1,7 +1,7 @@
 {
-    "port": "COM3",
+    "port": "/dev/ttyACM0",
     "configuration": "pnum=NUCLEO_F103RB,upload_method=MassStorage,xserial=generic,usb=none,xusb=FS,opt=osstd,dbg=none,rtlib=nano",
     "board": "STMicroelectronics:stm32:Nucleo_64",
-    "sketch": "nRF24L01_TX\\nRF24L01_TX.ino",
+    "sketch": "nRF24L01_TX/nRF24L01_TX.ino",
     "output": "./build"
 }
