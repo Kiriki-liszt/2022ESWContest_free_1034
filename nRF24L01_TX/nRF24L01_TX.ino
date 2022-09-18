@@ -11,8 +11,8 @@
 #define		Rx_CE		15
 #define		Rx_SCN		2
 // Timer
-#define		TIME_BCT	1000
-#define		TIME_CAR	2000
+#define		TIME_BCT	10000
+#define		TIME_CAR	20000
 
 //optionally, reduce the payload size.  seems to improve reliability.
 #define		Payload_size	8
@@ -44,7 +44,8 @@ void setup() {
 	// 거리가 가까운 순으로 RF24_PA_MIN / RF24_PA_LOW / RF24_PA_HIGH 등으로 설정할 수 있습니다.  RF24_PA_MAX는 레거시.
 	// 높은 레벨(거리가 먼 경우)은 작동하는 동안 안정적인 전압을 가지도록 GND와 3.3V에 바이패스 커패시터 사용을 권장함.
 	// radio.enableDynamicPayloads();
-	// radio.enableDynamicAck();
+	radio.enableDynamicAck();
+	// radio.setRetries(5, 0);
 	// radio.setAutoAck(false);
 	// radio.powerUp() ;
 	radio.stopListening();  //모듈을 송신기로 설정
@@ -62,11 +63,14 @@ unsigned char unused_2;
 
 unsigned char car_flag;
 
-unsigned long timer_car;
-unsigned long timer_bct;
+unsigned long timer_set = 0;
+
+bool rslt;
+unsigned char cast = 0;	// 0: single ; 1: broad
 
 
 void loop() {
+	delay(1000); // Every 1sec
 	// sprintf(sendBuffer, "00011011");
 	// sprintf(sendBuffer, "%d|root", counter);
 	// const char text[] = "Hi";
@@ -81,37 +85,32 @@ void loop() {
 	unused_1	= 0;
 	unused_2	= 3;
 
-
-	if (car_flag == 1){	// if car exsists;
-		// do a broadcast
-		radio.setAutoAck(false);
-		
-	}
-	else {
-		time_set = millis();
-	}
-
-	if (milis() - time_set > 1000) {
-		car_flag == 0;		// do a singcats;
-		time
-	}
-
 	make_message();
 
 	Serial.println("start");
+	if ( cast == 0 ) {		// singlecast
+		rslt = radio.write( &send_buff, sizeof(send_buff), false );
+		if (rslt) {
+			car_flag = 1;					// 차 있음
+			timer_set = millis();			// 타이머 시작
+			cast = 1;						// broadcast
+		} else if ((millis() - timer_set) > TIME_CAR) {
+			car_flag = 0;
+		}
+	} else {				// broadcast
+		radio.write( &send_buff, sizeof(send_buff), true );
+		if ((millis() - timer_set) > TIME_BCT) {
+			cast = 0;			// to singlecast
+		}
+	}
 
 	prnt_message();
-
-	radio.write( &ss, sizeof(ss) );
 
 	Serial.println("end\n");
 
 
 	// default : singlecast
 	radio.setAutoAck(true);
-
-	
-	delay(1000); // Every 1sec
 
 }
 
@@ -126,10 +125,15 @@ void make_message() {
 	send_buff	|= unused_2;
 }
 
-void prnt_message(){
-	Serial.print("ss : ");	Serial.println(ss);
+void prnt_message() {
+	Serial.print("ss : ");	Serial.println(send_buff);
 	Serial.print("rr : ");	Serial.println(right_turn);
 	Serial.print("ll : ");	Serial.println(left_turn);
 	Serial.print("u1 : ");	Serial.println(unused_1);
 	Serial.print("u2 : ");	Serial.println(unused_2);
+	Serial.print("car_flag : ");	Serial.println(car_flag);
+	Serial.print("cast : ");	Serial.println(cast);
+	Serial.print("rslt : ");	Serial.println(rslt);
+	Serial.print("timer_set : ");	Serial.println(timer_set);
+	Serial.print("time : ");	Serial.println(millis());
 }

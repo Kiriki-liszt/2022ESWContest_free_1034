@@ -38,8 +38,12 @@ Rx, Tx1, Tx2, Tx3
 타이머 : broadcast timer, car exist timer;
 
 flag은 0;
-singlecast 성공하면 시작시간 기록, flag는 1;  
+
+singlecast 성공하면 시작시간 기록 - 둘 다, flag는 1;  
+
 if ( milis() - timer_bct > TIME_BCT ) singlecast;
 
 flag -> 1 : singlecast 성공  
 flag -> 0 : timer_car - milis > TIME_CAR  
+
+flag == 1 : broadcast;  
