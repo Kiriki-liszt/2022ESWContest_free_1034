@@ -28,7 +28,7 @@ const byte address[6] = "00001";
 #define		SLAVE_nano_3	3
 #define		SLAVE_nano_4	4
 #define		SLAVE_NUM		4
-int SLAVE_nano[4] = {SLAVE_nano_1, SLAVE_nano_2, SLAVE_nano_3, SLAVE_nano_3};		// 슬레이브 주소
+int SLAVE_nano[4] = {SLAVE_nano_1, SLAVE_nano_2, SLAVE_nano_3, SLAVE_nano_4};		// 슬레이브 주소
 
 #define I2C_RxTx_byte	16
 char I2C_RxTx_Data[I2C_RxTx_byte];

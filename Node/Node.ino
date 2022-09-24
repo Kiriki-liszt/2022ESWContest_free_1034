@@ -53,30 +53,6 @@ void loop() {
 	}
 }
 
-void play() {				// 받았으니까 반응하는 부분
-	digitalWrite(13, HIGH);
-	delay(500);
-	digitalWrite(13, LOW);
-	temp = 0;
-}
-
-void receiveFromMaster(int bytes) {
-	/*
-	char ch[2];
-	for (int i = 0 ; i < bytes ; i++) {
-		// 수신 버퍼 읽기
-		ch[i] = Wire.read();
-	}
-	temp = ch[0];
-	*/
-	play();
-}
-
-void sendToMaster() {
-	// 마스터에게 반응할 메세지
-	Wire.write("sth from sensor");
-}
-
 
 void nRF_message_parsing() {
 	right_turn  = nRF_read_buff & 3;
