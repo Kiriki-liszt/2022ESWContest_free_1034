@@ -1,4 +1,6 @@
-// 동일한 부분
+/***********************************/
+/*             NodeMCU             */
+/***********************************/
 
 #include	<SPI.h>
 #include	<RF24.h>
@@ -6,15 +8,9 @@
 #include	<printf.h>
 
 // SPI 버스에 nRF24L01 라디오를 설정하기 위해 CE, CSN 선언.
-// STM Tx
-#define		Tx_CE		10
-#define		Tx_SCN		8
 // nodeMCU Rx
 #define		Rx_CE		15
 #define		Rx_SCN		2
-// Timer
-#define		TIME_BCT	10000
-#define		TIME_CAR	20000
 
 //optionally, reduce the payload size.  seems to improve reliability.
 #define		Payload_size	8
@@ -23,9 +19,6 @@
 const byte address[6] = "00001";
 
 ///////////////////////////////////////////// Rx 시작
-
-void receiveFromMaster(int bytes);
-void sendToMaster();
 
 void nRF_message_parsing();
 void nRF_message_print();
@@ -36,11 +29,6 @@ void setup() {
 
 	Serial.begin(9600);
 	Serial.println("Rx Start");
-
-	Wire.begin(SLAVE_nano_3);					// Wire 라이브러리 초기화 & 슬레이브 주소 지정 
-	Wire.onReceive(receiveFromMaster);			// 마스터의 데이터 수신 요구(onRev)가 있을 때 처리할 함수(revFromMas) 등록
-	Wire.onRequest(sendToMaster);				// 마스터의 데이터 전송 요구(onReq)가 있을 때 처리할 함수(sendMas) 등록
-	pinMode(13, OUTPUT);						// 13번 핀 = LED
 
 	radio.begin();
 	radio.setPayloadSize(Payload_size);

@@ -1,4 +1,7 @@
-// 동일한 부분
+/***********************************/
+/*          Nucleo F103RB          */
+/***********************************/
+
 #include	<SPI.h>
 #include	<RF24.h>
 #include	<nRF24L01.h>
@@ -9,9 +12,7 @@
 // STM Tx
 #define		Tx_CE		10
 #define		Tx_SCN		8
-// nodeMCU Rx
-#define		Rx_CE		15
-#define		Rx_SCN		2
+
 // Timer
 #define		TIME_BCT	10000
 #define		TIME_CAR	20000
@@ -128,7 +129,7 @@ void I2C_Tx (int salves) {
 
 void I2C_Req(int slaves) {
 	Wire.requestFrom(SLAVE_nano[slaves], I2C_RxTx_byte);		// n 바이트 크기의 데이터 요청
-	for (int i = 0 ; i < I2C_RxTx_byte ; i++) {	I2C_RxTx_Data[i] = NULL	}
+	for (int i = 0 ; i < I2C_RxTx_byte ; i++) {	I2C_RxTx_Data[i] = NULL;	}
 	for (int i = 0 ; i < I2C_RxTx_byte ; i++) {				// n 바이트 모두 출력할 때까지 반복
 		I2C_RxTx_Data[i] = Wire.read();						// 수신 데이터 읽기
 	}
