@@ -1,3 +1,4 @@
+// 동일한 부분
 #include	<SPI.h>
 #include	<RF24.h>
 #include	<nRF24L01.h>
@@ -30,6 +31,9 @@ int SLAVE_nano[4] = {SLAVE_nano_1, SLAVE_nano_2, SLAVE_nano_3, SLAVE_nano_3};		/
 
 #define I2C_RxTx_byte	16
 char I2C_RxTx_Data[I2C_RxTx_byte];
+
+
+///////////////////////////////////////////// Tx 시작
 
 void nRF_make_signal();
 void nRF_make_message();
@@ -108,6 +112,7 @@ void loop() {
 			cast = 0;			// to singlecast
 		}
 	}
+	
 
 	nRF_prnt_message();
 
