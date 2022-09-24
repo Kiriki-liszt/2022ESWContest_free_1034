@@ -5,9 +5,12 @@
 ## 시스템 설정
 
 * 보드 매니저
+  * <https://arduino.esp8266.com/stable/package_esp8266com_index.json>  
+  * <https://github.com/stm32duino/BoardManagerFiles/raw/main/package_stmicroelectronics_index.json>  
 
-  * <https://arduino.esp8266.com/stable/package_esp8266com_index.json>
-  * <https://github.com/stm32duino/BoardManagerFiles/raw/main/package_stmicroelectronics_index.json>
+* 라이브러리
+  * RF24  
+  * <https://github.com/Cesar-S/DFRobot_TFmini>  
 
 ## 내가 한 것들
 
