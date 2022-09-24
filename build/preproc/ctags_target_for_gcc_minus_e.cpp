@@ -1,140 +1,90 @@
-# 1 "/home/yoon/Documents/Arduino Project/Embedded_software_Contest_2022/nRF24L01_TX/nRF24L01_TX.ino"
-# 2 "/home/yoon/Documents/Arduino Project/Embedded_software_Contest_2022/nRF24L01_TX/nRF24L01_TX.ino" 2
-# 3 "/home/yoon/Documents/Arduino Project/Embedded_software_Contest_2022/nRF24L01_TX/nRF24L01_TX.ino" 2
-# 4 "/home/yoon/Documents/Arduino Project/Embedded_software_Contest_2022/nRF24L01_TX/nRF24L01_TX.ino" 2
-# 5 "/home/yoon/Documents/Arduino Project/Embedded_software_Contest_2022/nRF24L01_TX/nRF24L01_TX.ino" 2
+# 1 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\nRF24L01_I2C_Tx\\nRF24L01_I2C_Tx.ino"
+# 2 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\nRF24L01_I2C_Tx\\nRF24L01_I2C_Tx.ino" 2
 
-// SPI 버스에 nRF24L01 라디오를 설정하기 위해 CE, CSN 선언.
-// STM Tx
-
-
-// nodeMCU Rx
-
-
-// Timer
-
-
-
-//optionally, reduce the payload size.  seems to improve reliability.
-
-
-//주소값을 5가지 문자열로 변경할 수 있으며, 송신기와 수신기가 동일한 주소로 해야됨.
-const byte address[6] = "00001";
-
-
-
-RF24 radio(10, 8);
+int SLAVE[4] = {1, 2, 3, 4}; // 슬레이브 주소
 
 void setup() {
-
- Serial2.begin(9600);
- Serial2.println("Tx Start");
-
- radio.begin();
-
- radio.setPayloadSize(8); //optionally, reduce the payload size.  seems to improve reliability.
- radio.openWritingPipe(address); //이전에 설정한 5글자 문자열인 데이터를 보낼 수신의 주소를 설정
- // if( radio.setDataRate( RF24_250KBPS ) ) {
- //   printf( "Data rate 250KBPS set!\n\r" );
- // } else {
- //   printf( "Data rate 250KBPS set FAILED!!\n\r" );
- // }
- // radio.setDataRate( RF24_2MBPS );
- radio.setPALevel(RF24_PA_HIGH);
- // 전원공급에 관한 파워레벨을 설정합니다. 모듈 사이가 가까우면 최소로 설정합니다.
- // 거리가 가까운 순으로 RF24_PA_MIN / RF24_PA_LOW / RF24_PA_HIGH 등으로 설정할 수 있습니다.  RF24_PA_MAX는 레거시.
- // 높은 레벨(거리가 먼 경우)은 작동하는 동안 안정적인 전압을 가지도록 GND와 3.3V에 바이패스 커패시터 사용을 권장함.
- // radio.enableDynamicPayloads();
- radio.enableDynamicAck();
- // radio.setRetries(5, 0);
- // radio.setAutoAck(false);
- // radio.powerUp() ;
- radio.stopListening(); //모듈을 송신기로 설정
+ Wire.setSDA(14);
+ Wire.setSCL(15);
+ Wire.begin(); // Wire 라이브러리 초기화
+ Serial2.begin(9600); // 직렬 통신 초기화
 }
-
-// char sendBuffer[Payload_size];
-// uint8_t counter = 1;
-// 상태는 총 4개 : 00, 01, 10, 11
-// 상황은 앞에서부터 차례대로 우회전, 비보호, 로터리 등등
-unsigned char send_buff;
-unsigned char right_turn;
-unsigned char left_turn;
-unsigned char unused_1;
-unsigned char unused_2;
-
-unsigned char car_flag;
-
-unsigned long timer_set = 0;
-
-bool rslt;
-unsigned char cast = 0; // 0: single ; 1: broad
 
 
 void loop() {
- delay(1000); // Every 1sec
- // sprintf(sendBuffer, "00011011");
- // sprintf(sendBuffer, "%d|root", counter);
- // const char text[] = "Hi";
- // radio.write(&text, sizeof(text));  //해당 메시지를 수신자에게 보냄
- // radio.write( sendBuffer, sizeof(sendBuffer) );
- // counter++;
- // delay(1000); // Every 1sec
+ if (Serial2.available()) {
+  char e = Serial2.read();
+  byte c = e - 48;
+  if (c < 5) {
+   Wire.beginTransmission(SLAVE[c-1]); // I2C 통신을 통한 전송 시작
+   // 슬레이브 주소를 시리얼 창에 입력시 해당 시리얼 주소로 'o'문자와 데이터 요구를 보냅니다.
+   Wire.write('o');
+   Wire.write('\n');
+   Wire.endTransmission(SLAVE[c-1]);
 
- // messege write
- right_turn = 1;
- left_turn = 2;
- unused_1 = 0;
- unused_2 = 3;
-
- make_message();
-
- Serial2.println("start");
- if ( cast == 0 ) { // singlecast
-  rslt = radio.write( &send_buff, sizeof(send_buff), false );
-  if (rslt) {
-   car_flag = 1; // 차 있음
-   timer_set = millis(); // 타이머 시작
-   cast = 1; // broadcast
-  } else if ((millis() - timer_set) > 20000) {
-   car_flag = 0;
-  }
- } else { // broadcast
-  radio.write( &send_buff, sizeof(send_buff), true );
-  if ((millis() - timer_set) > 10000) {
-   cast = 0; // to singlecast
+   delay(10);
+   // 슬레이브로 데이터 요구 및 수신 데이터 처리
+   i2c_communication(c-1);
+   delay(10);
   }
  }
-
- prnt_message();
-
- Serial2.println("end\n");
-
-
- // default : singlecast
- radio.setAutoAck(true);
-
 }
 
-void make_message() {
- left_turn <<= 2;
- unused_1 <<= 4;
- unused_2 <<= 6;
-
- send_buff = right_turn;
- send_buff |= left_turn;
- send_buff |= unused_1;
- send_buff |= unused_2;
+void i2c_communication(int i) {
+ Wire.requestFrom(SLAVE[i], 12); // 12 바이트 크기의 데이터 요청
+ for (int j = 0 ; j < 12 ; j++) { // 12 바이트 모두 출력할 때까지 반복
+  char c = Wire.read(); // 수신 데이터 읽기
+  Serial2.print(c); // 수신 데이터 출력
+ }
+ Serial2.println();
 }
 
-void prnt_message() {
- Serial2.print("ss : "); Serial2.println(send_buff);
- Serial2.print("rr : "); Serial2.println(right_turn);
- Serial2.print("ll : "); Serial2.println(left_turn);
- Serial2.print("u1 : "); Serial2.println(unused_1);
- Serial2.print("u2 : "); Serial2.println(unused_2);
- Serial2.print("car_flag : "); Serial2.println(car_flag);
- Serial2.print("cast : "); Serial2.println(cast);
- Serial2.print("rslt : "); Serial2.println(rslt);
- Serial2.print("timer_set : "); Serial2.println(timer_set);
- Serial2.print("time : "); Serial2.println(millis());
-}
+
+
+
+
+/* Example pinmap for Bluepill I2Cs (by Testato)
+
+
+
+ I2C-1 standard pins: PB7(sda) PB6(scl)
+
+ Use it by "Wire" without pin declaration
+
+	Wire.begin();
+
+
+
+ I2C-1 alternative pins: PB9(sda) PB8(scl)
+
+ Remap the first I2C before call begin()
+
+	Wire.setSDA(PB9);
+
+	Wire.setSCL(PB8);
+
+	Wire.begin();
+
+
+
+ I2C-2: PB11(sda) PB10(scl)
+
+ Remap the second I2C before call begin()
+
+	Wire.setSDA(PB11);
+
+	Wire.setSCL(PB10);
+
+	Wire.begin();
+
+
+
+ If you want to use the two I2Cs simultaneously, create a new instance for the second I2C
+
+	TwoWire Wire2(PB11,PB10);
+
+	Wire2.begin();
+
+ 
+
+*/
