@@ -32,3 +32,4 @@
 ## 할 것
 
 * 어떠한 정보를 전달할 것인가
+* lidar==sensor 에서 station으로 전달할 때 -> station의 request 이후 한 스텝 돌릴 것인가, 둘은 독립적으로 돌 것인가.  

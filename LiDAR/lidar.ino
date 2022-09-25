@@ -17,6 +17,7 @@ void receiveFromMaster(int bytes);
 void sendToMaster();
 ///
 
+
 SoftwareSerial  mySerial(8, 7);	// RX, TX
 DFRobot_TFmini  TFmini;
 Servo			servo;
@@ -119,7 +120,7 @@ void receiveFromMaster(int bytes) {
 
 void sendToMaster() {
 	// 마스터에게 반응할 메세지
-	Wire.write(radstring);
-	Wire.write(diststring);
+	Wire.write(rad);
+	Wire.write(distance);
 }
 ///

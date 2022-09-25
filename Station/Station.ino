@@ -32,7 +32,8 @@ int SLAVE_nano[4] = {SLAVE_nano_1, SLAVE_nano_2, SLAVE_nano_3, SLAVE_nano_4};		/
 
 #define I2C_RxTx_byte	16
 char I2C_RxTx_Data[I2C_RxTx_byte];
-
+int  LiDAR_rad_dist[SLAVE_NUM][2];
+String LiDAR_String[SLAVE_NUM][2];
 
 ///////////////////////////////////////////// Tx 시작
 
@@ -142,16 +143,14 @@ void I2C_Req(int slaves) {
 	*/
 
 	Wire.requestFrom(SLAVE_nano[slaves], 2/*바이트*/);
-	int distance, rad;
 	while(Wire.available()) { 
-		distance = Wire.read();	
-		rad = Wire.read();
+		LiDAR_rad_dist[slaves][0] = Wire.read();			// rad
+		LiDAR_rad_dist[slaves][1] = Wire.read();			// distance
 	}
-	// 각도랑 거리를 string으로
-	String dist_string	= String(distance);
-	String rad_string	= String(rad);
-	Serial.print("dist string : ");		Serial.println(dist_string);
-	Serial.print("rad  string : ");		Serial.println(rad_string);
+	LiDAR_String[SLAVE_NUM][0] = String(LiDAR_rad_dist[slaves][0]);						// 각도랑 거리를 string으로
+	LiDAR_String[SLAVE_NUM][1] = String(LiDAR_rad_dist[slaves][1]);
+	Serial.print("rad  string : ");		Serial.println(LiDAR_String[SLAVE_NUM][0]);
+	Serial.print("dist string : ");		Serial.println(LiDAR_String[SLAVE_NUM][1]);
 }
 
 void nRF_make_signal() {
