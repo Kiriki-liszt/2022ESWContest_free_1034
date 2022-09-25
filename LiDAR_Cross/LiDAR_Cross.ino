@@ -1,8 +1,8 @@
 /*      Add      */
 #include	<Wire.h>
 
-#define		SLAVE_nano_1	0
-#define		SLAVE_nano_2	1
+#define		SLAVE_nano_1	1
+#define		SLAVE_nano_2	2
 #define		SLAVE_NUM		2
 
 int			SLAVE_nano[SLAVE_NUM] = {SLAVE_nano_1, SLAVE_nano_2};		// 슬레이브 주소
@@ -10,7 +10,7 @@ int			SLAVE_nano[SLAVE_NUM] = {SLAVE_nano_1, SLAVE_nano_2};		// 슬레이브 주
 void 		receiveFromMaster(int bytes);
 void		sendToMaster();
 
-bool		LiDAR_flag;
+int			LiDAR_flag;
 ///
 
 #include	<Servo.h>  //서보 라이브러리를 불러온다
@@ -81,11 +81,11 @@ void loop() {
 
 		if(width < W && height < H)	{			// 감지 시 할 것
 			LiDAR_flag = true;
-			/*
-			digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+			
+			//digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
 			delay(1000);                       // wait for a second
-			digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
-			*/
+			//digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+			
 		} else {LiDAR_flag = false;}
 
 		Rotatemotor();
@@ -101,7 +101,7 @@ void Rotatemotor() {
 		rad -=6;
 	}
 	else if (rad < 0) {
-		ervoDirection = +6;
+		servoDirection = +6;
 		rad +=6;
 	}
 	servo.write(rad);
@@ -118,6 +118,7 @@ void receiveFromMaster(int bytes) {
 
 void sendToMaster() {
 	// 마스터에게 반응할 메세지
-	Wire.write(LiDAR_flag);
+	Wire.write(1);
+	// Wire.write(LiDAR_flag);
 }
 ///

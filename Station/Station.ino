@@ -23,18 +23,19 @@
 //주소값을 5가지 문자열로 변경할 수 있으며, 송신기와 수신기가 동일한 주소로 해야됨.
 const byte address[6] = "00001";
 
-#define		SLAVE_nano_1	0
-#define		SLAVE_nano_2	1
+#define		SLAVE_nano_1	1
+#define		SLAVE_nano_2	2
 #define		SLAVE_NUM		2
 int SLAVE_nano[SLAVE_NUM] = {SLAVE_nano_1, SLAVE_nano_2};		// 슬레이브 주소
 
 #define I2C_RxTx_byte	16
 char I2C_RxTx_Data[I2C_RxTx_byte];
+
 int  LiDAR_data[SLAVE_NUM];
 
 ///////////////////////////////////////////// Tx 시작
 
-void I2C_Tx (int salves);
+void I2C_Tx (int slaves);
 void I2C_Req(int slaves);
 
 void nRF_make_signal();
@@ -95,6 +96,7 @@ void loop() {
 	delay(5);
 	I2C_Req(1);
 	delay(5);
+	Serial.println();
 
 	// RF
 	nRF_make_signal();
@@ -117,7 +119,7 @@ void loop() {
 	}
 	
 
-	nRF_prnt_message();
+	// nRF_prnt_message();
 
 	// default : singlecast
 	// radio.setAutoAck(true);
@@ -130,13 +132,15 @@ void I2C_Tx (int slaves) {
 }
 
 void I2C_Req(int slaves) {
-	Wire.requestFrom(SLAVE_nano[slaves], 1/*바이트*/);		// 인수로 넘겨받은 곳(I2C slave)으로 2바이트 데이터 요청
+	LiDAR_data[slaves] = 0;
+	Wire.requestFrom(SLAVE_nano[slaves], 1 /*바이트*/);		// 인수로 넘겨받은 곳(I2C slave)으로 2바이트 데이터 요청
 	while(Wire.available()) { 
-		LiDAR_data[slaves] = Wire.read();			// rad
+		LiDAR_data[slaves] = Wire.read();
 	}
 	Serial.print("slave_num : ");	Serial.print(slaves);
-	Serial.print("slave_data : ");	Serial.println(LiDAR_data[slaves]);
-	Serial.println();
+	Serial.print(" slave_data : ");	Serial.println(LiDAR_data[slaves]);
+	// 나노 1 = cross
+	// 나노 2 = side
 }
 
 // 상태는 총 4개 : 00, 01, 10, 11
