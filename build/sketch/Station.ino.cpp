@@ -52,7 +52,7 @@ RF24 radio(Tx_CE, Tx_SCN);
 void setup();
 #line 85 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\Station\\Station.ino"
 void loop();
-#line 124 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\Station\\Station.ino"
+#line 125 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\Station\\Station.ino"
 void I2C_Tx(int slaves);
 #line 49 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\Station\\Station.ino"
 void setup() {
@@ -92,16 +92,17 @@ unsigned char cast = 0;	// 0: single ; 1: broad
 
 
 void loop() {
-	delay(1000); // Every 1sec
+	delay(5); // Every 1sec
 
 	// I2C 
 	byte nano_addr;
-	for (nano_addr = 0; nano_addr < SLAVE_NUM; nano_addr++) {
+	//for (nano_addr = 0; nano_addr < SLAVE_NUM; nano_addr++) {
 		// I2C_Tx(nano_addr); delay(10);
 		// 슬레이브로 데이터 요구 및 수신 데이터 처리
-		I2C_Req(nano_addr);
-		delay(10);
-	}
+		// I2C_Req(nano_addr);
+		I2C_Req(2);
+		delay(5);
+	//}
 
 	// RF
 	nRF_make_signal();
@@ -124,7 +125,7 @@ void loop() {
 	}
 	
 
-	nRF_prnt_message();
+	// nRF_prnt_message();
 
 	// default : singlecast
 	// radio.setAutoAck(true);
@@ -141,11 +142,14 @@ void I2C_Req(int slaves) {
 	while(Wire.available()) { 
 		LiDAR_rad_dist[slaves][0] = Wire.read();			// rad
 		LiDAR_rad_dist[slaves][1] = Wire.read();			// distance
+		// Serial.print("rad  : ");		Serial.println(LiDAR_rad_dist[slaves][0]);
+		// Serial.print("dist : ");		Serial.println(LiDAR_rad_dist[slaves][1]);
 	}
 	LiDAR_String[SLAVE_NUM][0] = String(LiDAR_rad_dist[slaves][0]);						// 각도랑 거리를 string으로
 	LiDAR_String[SLAVE_NUM][1] = String(LiDAR_rad_dist[slaves][1]);
 	Serial.print("rad  string : ");		Serial.println(LiDAR_String[SLAVE_NUM][0]);
 	Serial.print("dist string : ");		Serial.println(LiDAR_String[SLAVE_NUM][1]);
+	Serial.println();
 }
 
 // 상태는 총 4개 : 00, 01, 10, 11

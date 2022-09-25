@@ -84,16 +84,17 @@ unsigned char cast = 0; // 0: single ; 1: broad
 
 
 void loop() {
- delay(1000); // Every 1sec
+ delay(5); // Every 1sec
 
  // I2C 
  byte nano_addr;
- for (nano_addr = 0; nano_addr < 4; nano_addr++) {
+ //for (nano_addr = 0; nano_addr < SLAVE_NUM; nano_addr++) {
   // I2C_Tx(nano_addr); delay(10);
   // 슬레이브로 데이터 요구 및 수신 데이터 처리
-  I2C_Req(nano_addr);
-  delay(10);
- }
+  // I2C_Req(nano_addr);
+  I2C_Req(2);
+  delay(5);
+ //}
 
  // RF
  nRF_make_signal();
@@ -116,7 +117,7 @@ void loop() {
  }
 
 
- nRF_prnt_message();
+ // nRF_prnt_message();
 
  // default : singlecast
  // radio.setAutoAck(true);
@@ -133,11 +134,14 @@ void I2C_Req(int slaves) {
  while(Wire.available()) {
   LiDAR_rad_dist[slaves][0] = Wire.read(); // rad
   LiDAR_rad_dist[slaves][1] = Wire.read(); // distance
+  // Serial.print("rad  : ");		Serial.println(LiDAR_rad_dist[slaves][0]);
+  // Serial.print("dist : ");		Serial.println(LiDAR_rad_dist[slaves][1]);
  }
  LiDAR_String[4][0] = String(LiDAR_rad_dist[slaves][0]); // 각도랑 거리를 string으로
  LiDAR_String[4][1] = String(LiDAR_rad_dist[slaves][1]);
  Serial2.print("rad  string : "); Serial2.println(LiDAR_String[4][0]);
  Serial2.print("dist string : "); Serial2.println(LiDAR_String[4][1]);
+ Serial2.println();
 }
 
 // 상태는 총 4개 : 00, 01, 10, 11

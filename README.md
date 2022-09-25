@@ -11,6 +11,7 @@
 * 라이브러리
   * RF24  
   * <https://github.com/Cesar-S/DFRobot_TFmini>  
+  * <https://github.com/DFRobot/DFRobotDFPlayerMini>
 
 ## 내가 한 것들
 
@@ -28,6 +29,8 @@
   * 2바이트만 되어도 8가지의 상황에 4가지의 상태 전달 가능
 * I2C 데이터 통신
   * Arduino Nano <-> STM Nucleo F103RB
+* MP3 모듈 사용 출력
+  * DFRobot의 MP3 모듈의 카피를 사용해서 연결 : 알게된 것 - Rx와 Tx는 교차 연결한다.  
 
 ## 할 것
 
