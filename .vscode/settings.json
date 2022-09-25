@@ -16,6 +16,7 @@
         "xhash": "cpp",
         "xstring": "cpp",
         "xutility": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "iterator": "cpp"
     }
 }

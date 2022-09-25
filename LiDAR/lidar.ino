@@ -61,8 +61,6 @@ void setup() {
 void loop() {
 	if (TFmini.measure()) {
 		distance = TFmini.getDistance();
-		dist_string	= String(distance);
-		rad_string	= String(rad);
 
 		int modular = distance % 5;
 		distance = distance - modular;

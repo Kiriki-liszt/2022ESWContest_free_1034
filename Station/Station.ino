@@ -51,7 +51,7 @@ void setup() {
 	
 	Wire.setSDA(PB9);				// nucleo-64 F103RB alt pins for I2C
 	Wire.setSCL(PB8);
-	Wire.begin();					// Wire 라이브러리 초기화
+	Wire.begin();					// Wire 라이브러리 초기화, join as controller
 
 	radio.begin();
 	radio.setPayloadSize(Payload_size);     //optionally, reduce the payload size.  seems to improve reliability.
@@ -128,12 +128,30 @@ void I2C_Tx (int salves) {
 }
 
 void I2C_Req(int slaves) {
+	/*
 	Wire.requestFrom(SLAVE_nano[slaves], I2C_RxTx_byte);		// n 바이트 크기의 데이터 요청
-	for (int i = 0 ; i < I2C_RxTx_byte ; i++) {	I2C_RxTx_Data[i] = NULL;	}
-	for (int i = 0 ; i < I2C_RxTx_byte ; i++) {				// n 바이트 모두 출력할 때까지 반복
-		I2C_RxTx_Data[i] = Wire.read();						// 수신 데이터 읽기
+	
+	for (int i = 0 ; i < I2C_RxTx_byte ; i++) {	
+		I2C_RxTx_Data[i] = NULL; 
 	}
+	while(Wire.available()) {
+		I2C_RxTx_Data[i] = Wire.read();							// 수신 데이터 읽기
+	}
+	
 	Serial.println(I2C_RxTx_Data);
+	*/
+
+	Wire.requestFrom(SLAVE_nano[slaves], 2/*바이트*/);
+	int distance, rad;
+	while(Wire.available()) { 
+		distance = Wire.read();	
+		rad = Wire.read();
+	}
+	// 각도랑 거리를 string으로
+	String dist_string	= String(distance);
+	String rad_string	= String(rad);
+	Serial.print("dist string : ");		Serial.println(dist_string);
+	Serial.print("rad  string : ");		Serial.println(rad_string);
 }
 
 void nRF_make_signal() {
@@ -155,14 +173,14 @@ void nRF_make_message() {
 }
 
 void nRF_prnt_message() {
-	Serial.print("ss : ");	Serial.println(nRF_send_buff);
-	Serial.print("rr : ");	Serial.println(right_turn);
-	Serial.print("ll : ");	Serial.println(left_turn);
-	Serial.print("u1 : ");	Serial.println(unused_1);
-	Serial.print("u2 : ");	Serial.println(unused_2);
+	Serial.print("ss : ");			Serial.println(nRF_send_buff);
+	Serial.print("rr : ");			Serial.println(right_turn);
+	Serial.print("ll : ");			Serial.println(left_turn);
+	Serial.print("u1 : ");			Serial.println(unused_1);
+	Serial.print("u2 : ");			Serial.println(unused_2);
 	Serial.print("car_flag : ");	Serial.println(car_flag);
-	Serial.print("cast : ");	Serial.println(cast);
-	Serial.print("rslt : ");	Serial.println(rslt);
+	Serial.print("cast : ");		Serial.println(cast);
+	Serial.print("rslt : ");		Serial.println(rslt);
 }
 
 
