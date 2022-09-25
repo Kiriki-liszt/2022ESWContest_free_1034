@@ -2,6 +2,6 @@
     "port": "COM3",
     "configuration": "pnum=NUCLEO_F103RB,upload_method=MassStorage,xserial=generic,usb=none,xusb=FS,opt=osstd,dbg=none,rtlib=nano",
     "board": "STMicroelectronics:stm32:Nucleo_64",
-    "sketch": "nRF24L01_I2C_Tx\\nRF24L01_I2C_Tx.ino",
+    "sketch": "Station\\Station.ino",
     "output": "./build"
 }

@@ -29,8 +29,7 @@ void Rotatemotor();
 bool CompareArray(int ia[]);
 
 uint16_t distance;
-String dist_string;
-String rad_string;
+
 
 const int			row = 6;
 const int		 column = 3;

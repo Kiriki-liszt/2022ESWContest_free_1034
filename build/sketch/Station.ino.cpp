@@ -1,3 +1,5 @@
+#include <Arduino.h>
+#line 1 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\Station\\Station.ino"
 /***********************************/
 /*          Nucleo F103RB          */
 /***********************************/
@@ -46,6 +48,13 @@ void I2C_Req(int slaves);
 
 RF24 radio(Tx_CE, Tx_SCN); 
 
+#line 49 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\Station\\Station.ino"
+void setup();
+#line 85 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\Station\\Station.ino"
+void loop();
+#line 124 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\Station\\Station.ino"
+void I2C_Tx(int slaves);
+#line 49 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\Station\\Station.ino"
 void setup() {
 	Serial.begin(9600);
 	Serial.println("Tx Start");

@@ -1,15 +1,5 @@
-c:\Users\yoon\Documents\Arduino\Projects\Embedded_software_Contest_2022\build\sketch\nRF24L01_I2C_Tx.ino.cpp.o: \
- c:\Users\yoon\Documents\Arduino\Projects\Embedded_software_Contest_2022\build\sketch\nRF24L01_I2C_Tx.ino.cpp \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/Arduino.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/wiring.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/avr/dtostrf.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/binary.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/itoa.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/wiring_analog.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/wiring_constants.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/wiring_digital.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/wiring_pulse.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/wiring_shift.h \
+c:\Users\yoon\Documents\Arduino\Projects\Embedded_software_Contest_2022\build\libraries\SPI\utility\spi_com.c.o: \
+ C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\libraries\SPI\src\utility\spi_com.c \
  C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/wiring_time.h \
  C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/clock.h \
  C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/stm32_def.h \
@@ -50,9 +40,9 @@ c:\Users\yoon\Documents\Arduino\Projects\Embedded_software_Contest_2022\build\sk
  C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\system/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\system/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
  C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/dwt.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/board.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/interrupt.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/analog.h \
+ C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/core_debug.h \
+ C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/stm32_def.h \
+ C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\libraries\SPI\src/utility/spi_com.h \
  C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/PeripheralPins.h \
  C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/pinmap.h \
  C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/PinNames.h \
@@ -60,41 +50,11 @@ c:\Users\yoon\Documents\Arduino\Projects\Embedded_software_Contest_2022\build\sk
  C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/PortNames.h \
  C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\variants\STM32F1xx\F103R(8-B)T/PinNamesVar.h \
  C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/PinAF_STM32F1.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/HardwareTimer.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/timer.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/LL/stm32yyxx_ll_tim.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\system/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_tim.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/backup.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/LL/stm32yyxx_ll_rtc.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\system/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_rtc.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/core_callback.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/digital_io.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/wiring_constants.h \
+ C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/PinAF_STM32F1.h \
+ C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/pinconfig.h \
+ C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/lock_resource.h \
+ C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/LL/stm32yyxx_ll_hsem.h \
  C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/LL/stm32yyxx_ll_gpio.h \
  C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\system/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_gpio.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/hw_config.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/otp.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/uart.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/HardwareTimer.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/Tone.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/WCharacter.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/WInterrupts.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/WMath.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/WSerial.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/HardwareSerial.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/Stream.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/Print.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/WString.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/avr/pgmspace.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/Printable.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/USBSerial.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/VirtIOSerial.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/pins_arduino.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/PinNames.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/pins_arduino_analog.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/pins_arduino_digital.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\libraries\Wire\src/Wire.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/Stream.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\libraries\Wire\src/utility/twi.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/stm32_def.h \
- C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/PeripheralPins.h
+ C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\cores\arduino/stm32/LL/stm32yyxx_ll_spi.h \
+ C:\Users\yoon\AppData\Local\Arduino15\packages\STMicroelectronics\hardware\stm32\2.3.0\system/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_spi.h

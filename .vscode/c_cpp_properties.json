@@ -18,7 +18,7 @@
             ],
             "intelliSenseMode": "gcc-x64",
             "includePath": [
-                "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\nRF24L01_I2C_Tx",
+                "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\Station",
                 "C:\\Users\\yoon\\AppData\\Local\\Arduino15\\packages\\STMicroelectronics\\hardware\\stm32\\2.3.0\\cores\\arduino\\avr",
                 "C:\\Users\\yoon\\AppData\\Local\\Arduino15\\packages\\STMicroelectronics\\hardware\\stm32\\2.3.0\\cores\\arduino\\stm32",
                 "C:\\Users\\yoon\\AppData\\Local\\Arduino15\\packages\\STMicroelectronics\\hardware\\stm32\\2.3.0\\cores\\arduino\\stm32\\LL",
@@ -42,6 +42,8 @@
                 "C:\\Users\\yoon\\AppData\\Local\\Arduino15\\packages\\STMicroelectronics\\tools\\CMSIS\\5.7.0\\CMSIS\\DSP\\PrivateInclude",
                 "C:\\Users\\yoon\\AppData\\Local\\Arduino15\\packages\\STMicroelectronics\\hardware\\stm32\\2.3.0\\cores\\arduino",
                 "C:\\Users\\yoon\\AppData\\Local\\Arduino15\\packages\\STMicroelectronics\\hardware\\stm32\\2.3.0\\variants\\STM32F1xx\\F103R(8-B)T",
+                "C:\\Users\\yoon\\AppData\\Local\\Arduino15\\packages\\STMicroelectronics\\hardware\\stm32\\2.3.0\\libraries\\SPI\\src",
+                "C:\\Users\\yoon\\Documents\\Arduino\\libraries\\RF24",
                 "C:\\Users\\yoon\\AppData\\Local\\Arduino15\\packages\\STMicroelectronics\\hardware\\stm32\\2.3.0\\libraries\\Wire\\src",
                 "C:\\Users\\yoon\\AppData\\Local\\Arduino15\\packages\\STMicroelectronics\\hardware\\stm32\\2.3.0\\libraries\\SrcWrapper\\src",
                 "c:\\users\\yoon\\appdata\\local\\arduino15\\packages\\stmicroelectronics\\tools\\xpack-arm-none-eabi-gcc\\10.3.1-2.3\\arm-none-eabi\\include\\c++\\10.3.1",

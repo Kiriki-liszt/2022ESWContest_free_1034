@@ -10,12 +10,22 @@
     "Includepath": "C:\\Users\\yoon\\AppData\\Local\\Arduino15\\packages\\STMicroelectronics\\hardware\\stm32\\2.3.0\\variants\\STM32F1xx\\F103R(8-B)T"
   },
   {
-    "Sourcefile": "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\build\\sketch\\nRF24L01_I2C_Tx.ino.cpp",
+    "Sourcefile": "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\build\\sketch\\Station.ino.cpp",
+    "Include": "SPI.h",
+    "Includepath": "C:\\Users\\yoon\\AppData\\Local\\Arduino15\\packages\\STMicroelectronics\\hardware\\stm32\\2.3.0\\libraries\\SPI\\src"
+  },
+  {
+    "Sourcefile": "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\build\\sketch\\Station.ino.cpp",
+    "Include": "RF24.h",
+    "Includepath": "C:\\Users\\yoon\\Documents\\Arduino\\libraries\\RF24"
+  },
+  {
+    "Sourcefile": "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\build\\sketch\\Station.ino.cpp",
     "Include": "Wire.h",
     "Includepath": "C:\\Users\\yoon\\AppData\\Local\\Arduino15\\packages\\STMicroelectronics\\hardware\\stm32\\2.3.0\\libraries\\Wire\\src"
   },
   {
-    "Sourcefile": "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\build\\sketch\\nRF24L01_I2C_Tx.ino.cpp",
+    "Sourcefile": "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\build\\sketch\\Station.ino.cpp",
     "Include": "",
     "Includepath": null
   },
@@ -26,6 +36,21 @@
   },
   {
     "Sourcefile": "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\build\\sketch\\SrcWrapper.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\yoon\\AppData\\Local\\Arduino15\\packages\\STMicroelectronics\\hardware\\stm32\\2.3.0\\libraries\\SPI\\src\\SPI.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\yoon\\AppData\\Local\\Arduino15\\packages\\STMicroelectronics\\hardware\\stm32\\2.3.0\\libraries\\SPI\\src\\utility\\spi_com.c",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\yoon\\Documents\\Arduino\\libraries\\RF24\\RF24.cpp",
     "Include": "",
     "Includepath": null
   },
