@@ -37,19 +37,19 @@ String LiDAR_String[SLAVE_NUM][2];
 
 ///////////////////////////////////////////// Tx 시작
 
+void I2C_Tx (int salves);
+void I2C_Req(int slaves);
+
 void nRF_make_signal();
 void nRF_make_message();
 void nRF_prnt_message();
-
-void I2C_Tx (int salves);
-void I2C_Req(int slaves);
 
 RF24 radio(Tx_CE, Tx_SCN); 
 
 void setup() {
 	Serial.begin(9600);
 	Serial.println("Tx Start");
-	
+		
 	Wire.setSDA(PB9);				// nucleo-64 F103RB alt pins for I2C
 	Wire.setSCL(PB8);
 	Wire.begin();					// Wire 라이브러리 초기화, join as controller
@@ -80,6 +80,8 @@ unsigned long timer_set = 0;
 
 bool rslt;
 unsigned char cast = 0;	// 0: single ; 1: broad
+
+int d = 0, cnt = 0;
 
 
 void loop() {
@@ -116,7 +118,7 @@ void loop() {
 	}
 	
 
-	// nRF_prnt_message();
+	nRF_prnt_message();
 
 	// default : singlecast
 	// radio.setAutoAck(true);
@@ -146,10 +148,16 @@ void I2C_Req(int slaves) {
 // 상태는 총 4개 : 00, 01, 10, 11
 // 상황은 앞에서부터 차례대로 우회전, 비보호, 로터리 등등
 void nRF_make_signal() { 
-	right_turn	= 1;
+  cnt++;
+	right_turn	= d;
 	left_turn	= 2;
 	unused_1	= 0;
 	unused_2	= 3;
+  if (cnt == 500) {
+    d++;
+    cnt=0;
+  }
+  if (d==4) d=0;
 }
 
 void nRF_make_message() {

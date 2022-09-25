@@ -6,6 +6,9 @@
 #include	<RF24.h>
 #include	<nRF24L01.h>
 #include	<printf.h>
+#include	"Arduino.h"
+#include	"SoftwareSerial.h"
+#include	"DFRobotDFPlayerMini.h"
 
 // SPI 버스에 nRF24L01 라디오를 설정하기 위해 CE, CSN 선언.
 // nodeMCU Rx
@@ -25,10 +28,25 @@ void nRF_message_print();
 
 RF24 radio(Rx_CE, Rx_SCN); 
 
-void setup() {
+SoftwareSerial mySoftwareSerial(5, 4); // RX, TX of Board <-> connect to Tx, Rx of Module
+DFRobotDFPlayerMini myDFPlayer;
+void printDetail(uint8_t type, int value);
 
-	Serial.begin(9600);
+void setup() {
+	Serial.begin(115200);
 	Serial.println("Rx Start");
+
+	mySoftwareSerial.begin(9600);
+	myDFPlayer.begin(mySoftwareSerial);
+	myDFPlayer.setTimeOut(500); //Set serial communictaion time out 500ms
+	myDFPlayer.volume(30);  //Set volume value (0~30).
+	myDFPlayer.EQ(DFPLAYER_EQ_NORMAL);
+	myDFPlayer.outputDevice(DFPLAYER_DEVICE_SD);
+	// 1 : 운전 그렇게 하는거 아닌데
+	// 2 : 우회전 불가능
+	// 3 : 우회전 가능
+	// 4 : 전방 500m
+	// myDFPlayer.playMp3Folder(4); // play specific mp3 in SD:/MP3/0004.mp3; File Name(0~65535)
 
 	radio.begin();
 	radio.setPayloadSize(Payload_size);
@@ -38,40 +56,55 @@ void setup() {
 	radio.startListening(); //모듈을 수신기로 설정
 }
 
-unsigned char nRF_read_buff;
-unsigned char right_turn;
-unsigned char left_turn;
-unsigned char unused_1;
-unsigned char unused_2;
-
+// 상태는 총 4개 : 00, 01, 10, 11 (0, 1, 2, 3)
+// 상황은 앞에서부터 차례대로 우회전, 비보호, 로터리 등등
+unsigned char	nRF_read_buff;
+unsigned char	status_before[4];
+unsigned char	status_now[4];
+bool 			status_flag[4] = {false, };
 
 void loop() {
 	if (radio.available()) {
 		radio.read(&nRF_read_buff, sizeof(nRF_read_buff));
 		nRF_message_parsing();
 		nRF_message_print();
+		for (int i = 0 ; i < 4 ; i++ ) {
+			if (status_flag[i]) {
+				myDFPlayer.playMp3Folder(status_now[i]+1);
+			}
+		}
 	}
 }
 
-
 void nRF_message_parsing() {
-	right_turn  = nRF_read_buff & 3;
-	left_turn   = nRF_read_buff & 12;
-	unused_1    = nRF_read_buff & 48;
-	unused_2    = nRF_read_buff & 192;
+	status_before[0]	= status_now[0];
+	status_before[1]	= status_now[1];
+	status_before[2]	= status_now[2];
+	status_before[3]	= status_now[3];
 
-	left_turn >>= 2;
-	unused_1  >>= 4;
-	unused_2  >>= 6;
+	status_now[0]	= nRF_read_buff & 3;
+	status_now[1]	= nRF_read_buff & 12;
+	status_now[2]	= nRF_read_buff & 48;
+	status_now[3]	= nRF_read_buff & 192;
+
+	status_now[1]	>>= 2;
+	status_now[2]	>>= 4;
+	status_now[3]	>>= 6;
+
+	for (int i = 0 ; i < 4 ; i++) {
+		if (status_before[i] == status_now[i])	status_flag[i] = false;
+		else 									status_flag[i] = true;
+	}
 }
 
 void nRF_message_print() {
 	Serial.println("start");
 	Serial.print("ss : ");	Serial.println(nRF_read_buff);
-	Serial.print("rr : ");	Serial.println(right_turn);
-	Serial.print("ll : ");	Serial.println(left_turn);
-	Serial.print("u1 : ");	Serial.println(unused_1);
-	Serial.print("u2 : ");	Serial.println(unused_2);
+	Serial.print("rr : ");	Serial.println(status_now[0]);
+	Serial.print("ll : ");	Serial.println(status_now[1]);
+	Serial.print("u1 : ");	Serial.println(status_now[2]);
+	Serial.print("u2 : ");	Serial.println(status_now[3]);
+	Serial.print("rtf : ");	Serial.println(status_flag[0]);
 	Serial.println("end\n");
 }
 
