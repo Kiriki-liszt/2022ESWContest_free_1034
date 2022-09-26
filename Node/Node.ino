@@ -71,6 +71,7 @@ void loop() {
 		for (int i = 0 ; i < 4 ; i++ ) {
 			if (status_flag[i]) {
 				myDFPlayer.playMp3Folder(status_now[i]+1);
+				delay(3000);
 			}
 		}
 	}

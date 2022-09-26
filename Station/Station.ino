@@ -32,7 +32,8 @@ int SLAVE_nano[SLAVE_NUM] = {SLAVE_nano_1, SLAVE_nano_2};		// 슬레이브 주�
 #define I2C_RxTx_byte	16
 char I2C_RxTx_Data[I2C_RxTx_byte];
 
-int  LiDAR_data[SLAVE_NUM];
+int		LiDAR_data[SLAVE_NUM];
+int		tone_cnt = 0;
 
 ///////////////////////////////////////////// Tx 시작
 
@@ -118,8 +119,22 @@ void loop() {
 	nRF_prnt_message();
 
 	if (car_flag == true) {
-		tone(3, 392.4, 500);
+		if (tone_cnt < 10) {
+			tone(3, 392.4);
+			tone_cnt++;
+		}
+		else if (tone_cnt < 20) {
+			tone(3, 261.6);
+			tone_cnt++;
+		}
+		else {
+			tone_cnt = 0;
+		}
 	} 
+	else {
+		tone(3, 0);
+		tone_cnt = 0;
+	}
 }
 
 void I2C_Tx (int slaves) {
@@ -146,6 +161,7 @@ void I2C_Req(int slaves) {
 // 상황은 앞에서부터 차례대로 우회전, 비보호, 로터리 등등
 void nRF_make_signal() { 
 	// TIME_ALART 사용
+	
 	if (LiDAR_data[0] == 1) {
 		right_turn = 1;
 	} else if (LiDAR_data[1] == 1) {

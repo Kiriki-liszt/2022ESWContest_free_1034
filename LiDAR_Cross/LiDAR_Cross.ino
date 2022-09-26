@@ -16,6 +16,7 @@ int			LiDAR_flag;
 ////////// 횡단보도 쪽
 #include	<Servo.h>  //서보 라이브러리를 불러온다
 #include	<DFRobot_TFmini.h>
+
 #define		TRIG		2    //트리거는 2번
 #define		ECHO		3    //에코는 3번
 
@@ -49,12 +50,14 @@ void setup() {
 
 void loop() {
 	if (TFmini.measure()) {						// 거리와 신호의 강도를 측정합니다. 성공하면 을 반환하여 if문이 작동합니다.
-		if(TFmini.getDistance() < 15) {			// 최대 거리 = 90 cm
+		if(TFmini.getDistance() < 12) {			// 최대 거리 = 90 cm
 			distance = TFmini.getDistance();	// 거리값을 cm단위로 불러옵니다.
-			d = distance/5;
+			//d = distance/5;
+			LiDAR_flag = 1;
 		}
 		else {
-			d = 3;
+			//d = 3;
+			LiDAR_flag = 0;
 		}
 
 		strength = TFmini.getStrength();       // 신호의 강도를 불러옵니다. 측정 대상이 넓으면 강도가 커집니다.
@@ -72,17 +75,12 @@ void loop() {
 		if (rad > 90) {
 			rad = 89;
 			servoDirection = -3;
-			LiDAR_flag = 0;		
-		}
-		else if (rad < 90 && rad >= 0) {
-			if (d >= 0 && d < 3) { // 최대거리(90cm) 안에 들어올 경우
-				LiDAR_flag = 1;		
-			}
+			//LiDAR_flag = 0;		
 		}
 		else if (rad < 0) {
 			rad = 1;
 			servoDirection = 3;
-			LiDAR_flag = 0;		
+			//LiDAR_flag = 0;		
 		}
 		servo.write(rad);
 
