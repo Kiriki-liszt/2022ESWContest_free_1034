@@ -132,7 +132,7 @@ void loop() {
 		}
 	} 
 	else {
-		tone(3, 0);
+		noTone(3);
 		tone_cnt = 0;
 	}
 }

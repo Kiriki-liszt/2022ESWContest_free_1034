@@ -28,16 +28,17 @@ void nRF_message_print();
 
 RF24 radio(Rx_CE, Rx_SCN); 
 
-SoftwareSerial mySoftwareSerial(5, 4); // RX, TX of Board <-> connect to Tx, Rx of Module
+// SoftwareSerial mySoftwareSerial(5, 4); // RX, TX of Board <-> connect to Tx, Rx of Module
+SoftwareSerial MP3_Serial(4, 0); // RX, TX of Board <-> connect to Tx, Rx of Module
 DFRobotDFPlayerMini myDFPlayer;
 void printDetail(uint8_t type, int value);
 
 void setup() {
-	Serial.begin(115200);
-	Serial.println("Rx Start");
+	// Serial.begin(115200);
+	// Serial.println("Rx Start");
 
-	mySoftwareSerial.begin(9600);
-	myDFPlayer.begin(mySoftwareSerial);
+	MP3_Serial.begin(9600);
+	myDFPlayer.begin(MP3_Serial);
 	myDFPlayer.setTimeOut(500); //Set serial communictaion time out 500ms
 	myDFPlayer.volume(30);  //Set volume value (0~30).
 	myDFPlayer.EQ(DFPLAYER_EQ_NORMAL);
@@ -67,8 +68,8 @@ void loop() {
 	if (radio.available()) {
 		radio.read(&nRF_read_buff, sizeof(nRF_read_buff));
 		nRF_message_parsing();
-		nRF_message_print();
-		for (int i = 0 ; i < 4 ; i++ ) {
+		// nRF_message_print();
+		for (int i = 0 ; i < 1 ; i++ ) {
 			if (status_flag[i]) {
 				myDFPlayer.playMp3Folder(status_now[i]+1);
 				delay(3000);
@@ -108,7 +109,6 @@ void nRF_message_print() {
 	Serial.print("rtf : ");	Serial.println(status_flag[0]);
 	Serial.println("end\n");
 }
-
 
 
 
