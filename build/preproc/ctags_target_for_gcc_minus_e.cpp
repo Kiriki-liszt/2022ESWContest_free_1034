@@ -1,6 +1,6 @@
-# 1 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\LiDAR_Side\\LiDAR_Side.ino"
+# 1 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\LiDAR_Cross\\LiDAR_Cross.ino"
 /*      Add      */
-# 3 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\LiDAR_Side\\LiDAR_Side.ino" 2
+# 3 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\LiDAR_Cross\\LiDAR_Cross.ino" 2
 
 
 
@@ -14,217 +14,83 @@ void sendToMaster();
 int LiDAR_flag;
 ///
 
-# 17 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\LiDAR_Side\\LiDAR_Side.ino" 2
-# 18 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\LiDAR_Side\\LiDAR_Side.ino" 2
+////////// 횡단보도 쪽
+# 18 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\LiDAR_Cross\\LiDAR_Cross.ino" 2
+# 19 "c:\\Users\\yoon\\Documents\\Arduino\\Projects\\Embedded_software_Contest_2022\\LiDAR_Cross\\LiDAR_Cross.ino" 2
+
+
 
 SoftwareSerial TFmini_Serial(8, 7); // RX, TX
 
-Servo servo;
 DFRobot_TFmini TFmini;
+Servo servo;
 
-
-
-
-uint16_t distance;
-
-int servoDirection = 2;
+int servoDirection = 1;
 int rad = 0; // rad는 각도를 의미합니다.
+uint16_t distance, strength; // 거리와 강도를 담는 변수
+uint16_t d = 0;
+//int a[2][3] = { 0 }; // 각도, 거리 + 1, 존재여부
 
-const int row = 5;
-const int column = 5;
-int personarr[row][column] = {0, };
-int new_personarr[row][column] = {0, };
-
-boolean first_flag = false;
 
 void setup() {
  Serial.begin(115200);
- pinMode(13, 0x1);
  //pinMode(TRIG, OUTPUT);
  //pinMode(ECHO, INPUT);
  servo.attach(6); //서보모터 핀은 9번
+ pinMode(13, 0x1);
+
  TFmini.begin(TFmini_Serial);
 
  /*      Add      */
- Wire.begin(2); // Wire 라이브러리 초기화 & 슬레이브 주소 지정 
+ Wire.begin(1); // Wire 라이브러리 초기화 & 슬레이브 주소 지정 
  Wire.onReceive(receiveFromMaster); // 마스터의 데이터 수신 요구(onRev)가 있을 때 처리할 함수(revFromMas) 등록
  Wire.onRequest(sendToMaster); // 마스터의 데이터 전송 요구(onReq)가 있을 때 처리할 함수(sendMas) 등록
  ///
 }
 
 void loop() {
- if (TFmini.measure()) {
-  distance = TFmini.getDistance();
-  int modular = distance / 6;
-
-  if (servoDirection<0) {
-   Serial.print("r");
-   Serial.print(rad + 5);
-  } else {
-   Serial.print("r");
-   Serial.print(rad);
+ if (TFmini.measure()) { // 거리와 신호의 강도를 측정합니다. 성공하면 을 반환하여 if문이 작동합니다.
+  if(TFmini.getDistance() < 15) { // 최대 거리 = 90 cm
+   distance = TFmini.getDistance(); // 거리값을 cm단위로 불러옵니다.
+   d = distance/5;
   }
-  Serial.print("d");
-  Serial.println(distance);
-
-  switch (modular) {
-   case 0:
-    if(rad < 18) {
-     new_personarr[4][4] = 1;
-    }
-    else if(18 <= rad && rad < 36) {
-     new_personarr[3][4] = 1;
-    }
-    else if(36 <= rad && rad < 54) {
-     new_personarr[2][4] = 1;
-    }
-    else if(54 <= rad && rad < 72) {
-     new_personarr[1][4] = 1;
-    }
-    else if(72 <= rad && rad <= 90) {
-     new_personarr[0][4] = 1;
-    }
-    break;
-
-   case 1:
-    if(rad<18) {
-     new_personarr[4][3] = 1;
-    }
-    else if(18 <= rad && rad < 36) {
-     new_personarr[3][3] = 1;
-    }
-    else if(36 <= rad && rad < 54) {
-     new_personarr[2][3] = 1;
-    }
-    else if(54 <= rad && rad < 72) {
-     new_personarr[1][3] = 1;
-    }
-    else if(72 <= rad && rad <= 90) {
-     new_personarr[0][3] = 1;
-    }
-    break;
-
-   case 2:
-    if(rad < 18) {
-     new_personarr[4][2] = 1;
-    }
-    else if(18 <= rad && rad < 36) {
-     new_personarr[3][2] = 1;
-    }
-    else if(36 <= rad && rad < 54) {
-     new_personarr[2][2] = 1;
-    }
-    else if(54 <= rad && rad < 72) {
-     new_personarr[1][2] = 1;
-    }
-    else if(72 <= rad && rad <= 90) {
-     new_personarr[0][2] = 1;
-    }
-    break;
-
-   case 3:
-    if(rad < 18) {
-     new_personarr[4][1] = 1;
-    }
-    else if(18 <= rad && rad < 36) {
-     new_personarr[3][1] = 1;
-    }
-    else if(36 <= rad && rad < 54) {
-     new_personarr[2][1] = 1;
-    }
-    else if(54 <= rad && rad < 72) {
-     new_personarr[1][1] = 1;
-    }
-    else if(72 <= rad && rad <= 90) {
-     new_personarr[0][1] = 1;
-    }
-    break;
-
-   case 4:
-    if(rad < 18) {
-     new_personarr[4][0] = 1;
-    }
-    else if(18 <= rad && rad < 36) {
-     new_personarr[3][0] = 1;
-    }
-    else if(36 <= rad && rad < 54) {
-     new_personarr[2][0] = 1;
-    }
-    else if(54 <= rad && rad < 72) {
-     new_personarr[1][0] = 1;
-    }
-    else if(72 <= rad && rad <= 90) {
-     new_personarr[0][0] = 1;
-    }
-    break;
-
-   default:
-    break;
+  else {
+   d = 3;
   }
 
-  if(rad == 90 || rad ==0) {
-   Serial.print("janghnassssssssssssssssssssssssssssssssssssssssssssss\n");
-   if (!first_flag) {
-    Serial.println("firstflag_janghanssssssssss");
-    for (int k=0; k<5; k++) {
-     for (int j = 0; j<5; j++) {
-      personarr[k][j] = new_personarr[k][j];
-     }
-    }
-   first_flag = true;
-   }
-   else {
-    Serial.println("comparearray_janghanssssssssss");
-    if (!CompareArray(new_personarr)) {
-     Serial.println("comparearray_false_janghanssssssssss");
-     /* 사람 감지되서 할 것 */
-     LiDAR_flag = 1;
+  strength = TFmini.getStrength(); // 신호의 강도를 불러옵니다. 측정 대상이 넓으면 강도가 커집니다.
 
-     // digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
-     delay(1000); // wait for a second
-     // digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+  // 5800이면 1m 입니다. 최대 기다리는 시간은 1,000,000 입니다.
+  // 5800을 58로 나누게 되면 cm 단위가 됩니다.
+  // long distance = pulseIn(ECHO, HIGH, 5800) / 58; //5800uS 동안 기다렸으므로 1미터 측정이 된다.
+  // Serial.print("r");
+  // Serial.print(rad);
+  // Serial.print("d");
+  // Serial.println(distance);
 
-     first_flag = false;
-    } else { LiDAR_flag = 0; }
-   }
+  rad += servoDirection;
 
-   for (int k=0; k<5; k++) {
-    for (int j = 0; j<5; j++) {
-     new_personarr[k][j] = 0;
-    }
+  if (rad > 90) {
+   rad = 89;
+   servoDirection = -3;
+   LiDAR_flag = 0;
+  }
+  else if (rad < 90 && rad >= 0) {
+   if (d >= 0 && d < 3) { // 최대거리(90cm) 안에 들어올 경우
+    LiDAR_flag = 1;
    }
   }
-  Rotatemotor();
+  else if (rad < 0) {
+   rad = 1;
+   servoDirection = 3;
+   LiDAR_flag = 0;
+  }
+  servo.write(rad);
+
+  delay(60); //서보모터가 움직이는 걸리는 시간을 줍니다.
  }
- delay(20); //서보모터가 움직이는 걸리는 시간을 줍니다.
 }
 
-
-void Rotatemotor() {
- rad += servoDirection;
- if (rad > 90) {
-  servoDirection = -2;
-  rad -= 4;
-
- }
- else if (rad < 0) {
-  servoDirection = +2;
-  rad += 4;
- }
- servo.write(rad);
-}
-
-bool CompareArray(int ia[][5]) {
-   //int size = sizeof(ia) / sizeof(int);
- for (int k=0; k<5; k++) {
-  for(int j = 0; j<5; j++) {
-   if(ia[k][j] != personarr[k][j]) {
-    return false;
-   }
-  }
- }
- return true;
-}
 
 /*      Add      */
 void receiveFromMaster(int bytes) {
@@ -237,7 +103,7 @@ void receiveFromMaster(int bytes) {
 
 void sendToMaster() {
  // 마스터에게 반응할 메세지
- // Wire.write(2);
+ // Wire.write(1);
  Wire.write(LiDAR_flag);
 }
 ///

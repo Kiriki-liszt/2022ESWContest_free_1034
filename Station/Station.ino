@@ -16,6 +16,7 @@
 // Timer
 #define		TIME_BCT		10000
 #define		TIME_CAR		20000
+#define		TIME_ALART		5000
 
 //optionally, reduce the payload size.  seems to improve reliability.
 #define		Payload_size	8
@@ -33,6 +34,8 @@ char I2C_RxTx_Data[I2C_RxTx_byte];
 
 int  LiDAR_data[SLAVE_NUM];
 
+const int ledPin = PA5_ALT0;
+
 ///////////////////////////////////////////// Tx 시작
 
 void I2C_Tx (int slaves);
@@ -45,6 +48,9 @@ void nRF_prnt_message();
 RF24 radio(Tx_CE, Tx_SCN); 
 
 void setup() {
+	pinMode(ledPin, OUTPUT); 
+	digitalWrite(ledPin, HIGH); 
+
 	Serial.begin(9600);
 	Serial.println("Tx Start");
 		
@@ -81,7 +87,7 @@ unsigned char cast = 0;	// 0: single ; 1: broad
 
 void loop() {
 	delay(5); 
-
+	digitalWrite(ledPin, HIGH); 
 	// I2C 
 	// byte nano_addr;
 	//for (nano_addr = 0; nano_addr < SLAVE_NUM; nano_addr++) {
@@ -111,7 +117,14 @@ void loop() {
 			cast = 0;			// to singlecast
 		}
 	}
-	// nRF_prnt_message();
+	nRF_prnt_message();
+	/*
+	if (car_flag == true) {
+		digitalWrite(PA_5, HIGH); 
+	} else {
+		digitalWrite(PA_5, LOW); 
+	}
+	*/
 }
 
 void I2C_Tx (int slaves) {
@@ -135,6 +148,7 @@ void I2C_Req(int slaves) {
 // 상태는 총 4개 : 00, 01, 10, 11
 // 상황은 앞에서부터 차례대로 우회전, 비보호, 로터리 등등
 void nRF_make_signal() { 
+	// TIME_ALART 사용
 	if (LiDAR_data[0] == 1) {
 		right_turn = 1;
 	} else if (LiDAR_data[1] == 1) {

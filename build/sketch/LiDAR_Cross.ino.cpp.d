@@ -1,5 +1,5 @@
-c:\Users\yoon\Documents\Arduino\Projects\Embedded_software_Contest_2022\build\sketch\LiDAR_Side.ino.cpp.o: \
- c:\Users\yoon\Documents\Arduino\Projects\Embedded_software_Contest_2022\build\sketch\LiDAR_Side.ino.cpp \
+c:\Users\yoon\Documents\Arduino\Projects\Embedded_software_Contest_2022\build\sketch\LiDAR_Cross.ino.cpp.o: \
+ c:\Users\yoon\Documents\Arduino\Projects\Embedded_software_Contest_2022\build\sketch\LiDAR_Cross.ino.cpp \
  C:\Users\yoon\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.5\cores\arduino/Arduino.h \
  C:\Users\yoon\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.5\cores\arduino/binary.h \
  C:\Users\yoon\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.5\cores\arduino/WCharacter.h \
