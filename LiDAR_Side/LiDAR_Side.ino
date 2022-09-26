@@ -88,9 +88,9 @@ void loop() {
 					new_personarr[3][3] = 1;
 				} else if(36 <= rad && rad < 54) {
 					new_personarr[2][3] = 1;
-				} else if(54 <=rad && rad < 72) {
+				} else if(54 <= rad && rad < 72) {
 					new_personarr[1][3] = 1;
-				} else if(72 <=rad && rad <= 90) {
+				} else if(72 <= rad && rad <= 90) {
 					new_personarr[0][3] = 1;
 				}
 				break;	
@@ -110,24 +110,19 @@ void loop() {
 				break;
 
 			case 3:
-				if(rad<18)
-				{
+				if(rad < 18) {
 				new_personarr[4][1] = 1;
 				}
-				else if(18<=rad &&rad <36)
-				{
+				else if(18 <= rad && rad < 36) {
 				new_personarr[3][1] = 1;
 				}
-				else if(36<=rad &&rad <54)
-				{
+				else if(36 <= rad &&rad <54) {
 				new_personarr[2][1] = 1;
 				}
-				else if(54<=rad &&rad <72)
-				{
+				else if(54<=rad &&rad <72) {
 				new_personarr[1][1] = 1;
 				}
-				else if(72<=rad &&rad <=90)
-				{
+				else if(72<=rad &&rad <=90) {
 				new_personarr[0][1] = 1;
 				}
 				break;
@@ -176,14 +171,14 @@ void loop() {
 				if(!CompareArray(new_personarr)) {
 					Serial.println("comparearray_false_janghanssssssssss");
 					/* 사람 감지되서 할 것 */
-					LiDAR_flag = true;
+					LiDAR_flag = 1;
 					
 					// digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
 					delay(1000);                       // wait for a second
 					// digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
 				
 					first_flag = false;
-				} else {LiDAR_flag = false;}
+				} else {LiDAR_flag = 0;}
 			}
 
 			for (int k=0; k<5; k++) {
@@ -239,7 +234,7 @@ void receiveFromMaster(int bytes) {
 
 void sendToMaster() {
 	// 마스터에게 반응할 메세지
-	Wire.write(2);
-	// Wire.write(LiDAR_flag);
+	// Wire.write(2);
+	Wire.write(LiDAR_flag);
 }
 ///

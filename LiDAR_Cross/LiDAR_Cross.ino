@@ -30,7 +30,7 @@ int				servoDirection = 3;
 int				rad = 0;				// rad는 각도를 의미합니다.
 
 float			W = 10;
-float			H = 50;
+float			H = 10;
 const int		row = 5;
 const int		column = 5;
 int					personarr[row][column]	= {0, };
@@ -80,13 +80,13 @@ void loop() {
 		Serial.println(height);
 
 		if(width < W && height < H)	{			// 감지 시 할 것
-			LiDAR_flag = true;
+			LiDAR_flag = 1;		
+			Serial.println("LiDAR_flag High");
+			// digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+			delay(1000);                	       // wait for a second
+			// digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
 			
-			//digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
-			delay(1000);                       // wait for a second
-			//digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
-			
-		} else {LiDAR_flag = false;}
+		} else {LiDAR_flag = 0;}
 
 		Rotatemotor();
 	}
@@ -118,7 +118,7 @@ void receiveFromMaster(int bytes) {
 
 void sendToMaster() {
 	// 마스터에게 반응할 메세지
-	Wire.write(1);
-	// Wire.write(LiDAR_flag);
+	// Wire.write(1);
+	Wire.write(LiDAR_flag);
 }
 ///
