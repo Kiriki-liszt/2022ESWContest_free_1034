@@ -10,18 +10,18 @@
 
 // SPI 버스에 nRF24L01 라디오를 설정하기 위해 CE, CSN 선언.
 // STM Tx
-#define		Tx_CE		10
-#define		Tx_SCN		8
+#define		Tx_CE			10
+#define		Tx_SCN			8
 
 // Timer
-#define		TIME_BCT	10000
-#define		TIME_CAR	20000
+#define		TIME_BCT		10000
+#define		TIME_CAR		20000
 
 //optionally, reduce the payload size.  seems to improve reliability.
 #define		Payload_size	8
 
 //주소값을 5가지 문자열로 변경할 수 있으며, 송신기와 수신기가 동일한 주소로 해야됨.
-const byte address[6] = "00001";
+const byte	address[6] =	"00001";
 
 #define		SLAVE_nano_1	1
 #define		SLAVE_nano_2	2
@@ -79,24 +79,18 @@ unsigned long timer_set = 0;
 bool rslt;
 unsigned char cast = 0;	// 0: single ; 1: broad
 
-int d = 0, cnt = 0;
-
-
 void loop() {
-	delay(5); // Every 1sec
+	delay(5); 
 
 	// I2C 
-	byte nano_addr;
+	// byte nano_addr;
 	//for (nano_addr = 0; nano_addr < SLAVE_NUM; nano_addr++) {
 		// I2C_Tx(nano_addr); delay(10);
 		// 슬레이브로 데이터 요구 및 수신 데이터 처리
 		// I2C_Req(nano_addr); delay(10);
 	//}
-	I2C_Req(0);
-	delay(5);
-	I2C_Req(1);
-	delay(5);
-	Serial.println();
+	I2C_Req(0);		delay(5);
+	I2C_Req(1);		delay(5);
 
 	// RF
 	nRF_make_signal();
@@ -117,12 +111,7 @@ void loop() {
 			cast = 0;			// to singlecast
 		}
 	}
-	
-
 	// nRF_prnt_message();
-
-	// default : singlecast
-	// radio.setAutoAck(true);
 }
 
 void I2C_Tx (int slaves) {
@@ -139,23 +128,23 @@ void I2C_Req(int slaves) {
 	}
 	Serial.print("slave_num : ");	Serial.print(slaves);
 	Serial.print(" slave_data : ");	Serial.println(LiDAR_data[slaves]);
-	// 나노 1 = cross
-	// 나노 2 = side
+	// slave 0 = 나노 1 = cross
+	// slave 1 = 나노 2 = side
 }
 
 // 상태는 총 4개 : 00, 01, 10, 11
 // 상황은 앞에서부터 차례대로 우회전, 비보호, 로터리 등등
 void nRF_make_signal() { 
-  cnt++;
-	right_turn	= d;
+	if (LiDAR_data[0] == 1) {
+		right_turn = 1;
+	} else if (LiDAR_data[1] == 1) {
+		right_turn = 0;
+	} else {
+		right_turn = 2;
+	}
 	left_turn	= 2;
 	unused_1	= 0;
 	unused_2	= 3;
-  if (cnt == 500) {
-    d++;
-    cnt=0;
-  }
-  if (d==4) d=0;
 }
 
 void nRF_make_message() {

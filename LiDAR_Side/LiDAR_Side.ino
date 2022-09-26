@@ -26,7 +26,7 @@ DFRobot_TFmini	TFmini;
 
 uint16_t		distance;
 
-int				servoDirection = 1;
+int				servoDirection = 2;
 int				rad = 0; // rad는 각도를 의미합니다.
 
 const int		row = 5;
@@ -52,13 +52,13 @@ void setup() {
 }
 
 void loop() {
-	if(TFmini.measure()) {
-		distance= TFmini.getDistance();
-		int modular = distance /10;
+	if (TFmini.measure()) {
+		distance = TFmini.getDistance();
+		int modular = distance / 6;
 
-		if(servoDirection<0) {
+		if (servoDirection<0) {
 			Serial.print("r");
-			Serial.print(rad+5);
+			Serial.print(rad + 5);
 		} else {
 			Serial.print("r");
 			Serial.print(rad);
@@ -66,17 +66,21 @@ void loop() {
 		Serial.print("d");
 		Serial.println(distance);
 
-		switch(modular) {
+		switch (modular) {
 			case 0:
 				if(rad < 18) {
 					new_personarr[4][4] = 1;
-				} else if(18 <= rad && rad < 36) {
+				} 
+				else if(18 <= rad && rad < 36) {
 					new_personarr[3][4] = 1;
-				} else if(36 <= rad && rad < 54) {
+				} 
+				else if(36 <= rad && rad < 54) {
 					new_personarr[2][4] = 1;
-				} else if(54 <= rad && rad < 72) {
+				} 
+				else if(54 <= rad && rad < 72) {
 					new_personarr[1][4] = 1;
-				} else if(72 <= rad && rad <= 90) {
+				} 
+				else if(72 <= rad && rad <= 90) {
 					new_personarr[0][4] = 1;
 				}
 				break;
@@ -84,13 +88,17 @@ void loop() {
 			case 1:
 				if(rad<18) {
 					new_personarr[4][3] = 1;
-				} else if(18 <= rad && rad < 36) {
+				} 
+				else if(18 <= rad && rad < 36) {
 					new_personarr[3][3] = 1;
-				} else if(36 <= rad && rad < 54) {
+				} 
+				else if(36 <= rad && rad < 54) {
 					new_personarr[2][3] = 1;
-				} else if(54 <= rad && rad < 72) {
+				} 
+				else if(54 <= rad && rad < 72) {
 					new_personarr[1][3] = 1;
-				} else if(72 <= rad && rad <= 90) {
+				} 
+				else if(72 <= rad && rad <= 90) {
 					new_personarr[0][3] = 1;
 				}
 				break;	
@@ -98,55 +106,54 @@ void loop() {
 			case 2:
 				if(rad < 18) {
 					new_personarr[4][2] = 1;
-				} else if(18 <= rad && rad < 36) {
+				} 
+				else if(18 <= rad && rad < 36) {
 					new_personarr[3][2] = 1;
-				} else if(36 <= rad && rad < 54) {
+				} 
+				else if(36 <= rad && rad < 54) {
 					new_personarr[2][2] = 1;
-				} else if(54 <= rad && rad < 72) {
+				} 
+				else if(54 <= rad && rad < 72) {
 					new_personarr[1][2] = 1;
-				} else if(72 <= rad && rad <= 90) {
+				} 
+				else if(72 <= rad && rad <= 90) {
 					new_personarr[0][2] = 1;
 				}
 				break;
 
 			case 3:
 				if(rad < 18) {
-				new_personarr[4][1] = 1;
+					new_personarr[4][1] = 1;
 				}
 				else if(18 <= rad && rad < 36) {
-				new_personarr[3][1] = 1;
+					new_personarr[3][1] = 1;
 				}
-				else if(36 <= rad &&rad <54) {
-				new_personarr[2][1] = 1;
+				else if(36 <= rad && rad < 54) {
+					new_personarr[2][1] = 1;
 				}
-				else if(54<=rad &&rad <72) {
-				new_personarr[1][1] = 1;
+				else if(54 <= rad && rad < 72) {
+					new_personarr[1][1] = 1;
 				}
-				else if(72<=rad &&rad <=90) {
-				new_personarr[0][1] = 1;
+				else if(72 <= rad && rad <= 90) {
+					new_personarr[0][1] = 1;
 				}
 				break;
 
 			case 4:
-				if(rad<18)
-				{
-				new_personarr[4][0] = 1;
+				if(rad < 18) {
+					new_personarr[4][0] = 1;
 				}
-				else if(18<=rad &&rad <36)
-				{
-				new_personarr[3][0] = 1;
+				else if(18 <= rad && rad < 36) {
+					new_personarr[3][0] = 1;
 				}
-				else if(36<=rad &&rad <54)
-				{
-				new_personarr[2][0] = 1;
+				else if(36 <= rad && rad < 54) {
+					new_personarr[2][0] = 1;
 				}
-				else if(54<=rad &&rad <72)
-				{
-				new_personarr[1][0] = 1;
+				else if(54 <= rad && rad < 72) {
+					new_personarr[1][0] = 1;
 				}
-				else if(72<=rad &&rad <=90)
-				{
-				new_personarr[0][0] = 1;
+				else if(72 <= rad && rad <= 90) {
+					new_personarr[0][0] = 1;
 				}
 				break;
 	
@@ -156,11 +163,10 @@ void loop() {
 
 		if(rad == 90 || rad ==0) {
 			Serial.print("janghnassssssssssssssssssssssssssssssssssssssssssssss\n");
-			if(!first_flag) {
+			if (!first_flag) {
 				Serial.println("firstflag_janghanssssssssss");
 				for (int k=0; k<5; k++) {
-					for(int j = 0; j<5; j++)
-					{
+					for (int j = 0; j<5; j++) {
 						personarr[k][j] = new_personarr[k][j];
 					}
 				}
@@ -168,7 +174,7 @@ void loop() {
 			}
 			else {
 				Serial.println("comparearray_janghanssssssssss");
-				if(!CompareArray(new_personarr)) {
+				if (!CompareArray(new_personarr)) {
 					Serial.println("comparearray_false_janghanssssssssss");
 					/* 사람 감지되서 할 것 */
 					LiDAR_flag = 1;
@@ -178,46 +184,42 @@ void loop() {
 					// digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
 				
 					first_flag = false;
-				} else {LiDAR_flag = 0;}
+				} else { LiDAR_flag = 0; }
 			}
 
 			for (int k=0; k<5; k++) {
-				for(int j = 0; j<5; j++) {
+				for (int j = 0; j<5; j++) {
 					new_personarr[k][j] = 0;
 				}
 			}
 		}
 		Rotatemotor();
 	}
-	delay(30); //서보모터가 움직이는 걸리는 시간을 줍니다.
+	delay(20); //서보모터가 움직이는 걸리는 시간을 줍니다.
 }
 
 
-void Rotatemotor()
-{
+void Rotatemotor() {
 	rad += servoDirection;
 	if (rad > 90) {
-		servoDirection = -1;
-		rad -=2;
+		servoDirection = -2;
+		rad -= 4;
 	
 	}
 	else if (rad < 0) {
-	servoDirection = +1;
-		rad +=2;
+		servoDirection = +2;
+		rad += 4;
 	}
 	servo.write(rad);
 }
 
 bool CompareArray(int ia[][5]) {
    //int size = sizeof(ia) / sizeof(int);
-	for (int k=0; k<5; k++)
-	{
-		for(int j = 0; j<5; j++)
-		{
-			if(ia[k][j] !=  personarr[k][j])
-		{
-			return false;
-		}
+	for (int k=0; k<5; k++) {
+		for(int j = 0; j<5; j++) {
+			if(ia[k][j] !=  personarr[k][j]) {
+				return false;
+			}
 		}
 	}
 	return true;
