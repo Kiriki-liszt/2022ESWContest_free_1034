@@ -116,7 +116,7 @@ void loop() {
 			cast = 0;			// to singlecast
 		}
 	}
-	nRF_prnt_message();
+	// nRF_prnt_message();
 
 	if (car_flag == true) {
 		if (tone_cnt < 10) {

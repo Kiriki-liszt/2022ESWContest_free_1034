@@ -66,10 +66,10 @@ void loop() {
   // 5800이면 1m 입니다. 최대 기다리는 시간은 1,000,000 입니다.
   // 5800을 58로 나누게 되면 cm 단위가 됩니다.
   // long distance = pulseIn(ECHO, HIGH, 5800) / 58; //5800uS 동안 기다렸으므로 1미터 측정이 된다.
-  // Serial.print("r");
-  // Serial.print(rad);
-  // Serial.print("d");
-  // Serial.println(distance);
+  Serial.print("r");
+  Serial.print(rad);
+  Serial.print("d");
+  Serial.println(distance);
 
   rad += servoDirection;
 
