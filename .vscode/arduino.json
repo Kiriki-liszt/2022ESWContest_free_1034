@@ -1,7 +1,7 @@
 {
-    "port": "COM12",
+    "port": "COM10",
     "configuration": "cpu=atmega328",
     "board": "arduino:avr:nano",
-    "sketch": "LiDAR_Cross\\LiDAR_Cross.ino",
+    "sketch": "SIDE\\SIDE.ino",
     "output": "./build"
 }

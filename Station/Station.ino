@@ -15,7 +15,7 @@
 
 // Timer
 #define		TIME_BCT		10000
-#define		TIME_CAR		20000
+#define		TIME_CAR		12000		// 20000
 #define		TIME_ALART		5000
 
 //optionally, reduce the payload size.  seems to improve reliability.
@@ -119,16 +119,20 @@ void loop() {
 	// nRF_prnt_message();
 
 	if (car_flag == true) {
-		if (tone_cnt < 10) {
+		if (tone_cnt < 50) {
+			noTone(3);
+			tone_cnt++;
+		}
+		else if (tone_cnt < 60) {
 			tone(3, 392.4);
 			tone_cnt++;
 		}
-		else if (tone_cnt < 20) {
+		else if (tone_cnt < 70) {
 			tone(3, 261.6);
 			tone_cnt++;
 		}
 		else {
-			tone_cnt = 0;
+			tone_cnt = 50;
 		}
 	} 
 	else {

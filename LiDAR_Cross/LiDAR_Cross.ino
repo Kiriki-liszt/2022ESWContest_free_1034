@@ -11,6 +11,12 @@ void 		receiveFromMaster(int bytes);
 void		sendToMaster();
 
 int			LiDAR_flag;
+int         flag0;
+float		W = 12;
+float		H = 10;
+float		radi;
+float		width;
+float		height;
 ///
 
 ////////// 횡단보도 쪽
@@ -50,41 +56,53 @@ void setup() {
 
 void loop() {
 	if (TFmini.measure()) {						// 거리와 신호의 강도를 측정합니다. 성공하면 을 반환하여 if문이 작동합니다.
-		if(TFmini.getDistance() < 12) {			// 최대 거리 = 90 cm
-			distance = TFmini.getDistance();	// 거리값을 cm단위로 불러옵니다.
-			//d = distance/5;
-			LiDAR_flag = 1;
-		}
-		else {
-			//d = 3;
-			LiDAR_flag = 0;
-		}
+        if(TFmini.getDistance()<14){
+		distance = TFmini.getDistance();
+		flag0 = 1;	// 거리값을 cm단위로 불러옵니다.
+	    }
+		//add
+		//distance = TFmini.getDistance();
+		if(TFmini.getDistance() >= 14){
+			distance = 14;
+		} 
+		
+		rad += servoDirection;
 
-		strength = TFmini.getStrength();       // 신호의 강도를 불러옵니다. 측정 대상이 넓으면 강도가 커집니다.
+//		radi = rad*PI/180;
+//		width =  distance*cos(radi);
+//		height = distance*sin(radi);
+
+//		if(width<W && height<H){
+//			flag0 = 1;
+//		}
+
 
 		// 5800이면 1m 입니다. 최대 기다리는 시간은 1,000,000 입니다.
 		// 5800을 58로 나누게 되면 cm 단위가 됩니다.
 		// long distance = pulseIn(ECHO, HIGH, 5800) / 58; //5800uS 동안 기다렸으므로 1미터 측정이 된다.
 		Serial.print("r");
-		Serial.print(rad);
+		Serial.print(rad + 90);
 		Serial.print("d");
 		Serial.println(distance);
 
-		rad += servoDirection;
 
 		if (rad > 90) {
+			LiDAR_flag = flag0;
+			flag0 = 0;
 			rad = 89;
-			servoDirection = -3;
+			servoDirection = -1;
 			//LiDAR_flag = 0;		
 		}
 		else if (rad < 0) {
+			LiDAR_flag = flag0;
+			flag0 = 0;
 			rad = 1;
-			servoDirection = 3;
+			servoDirection = 1;
 			//LiDAR_flag = 0;		
 		}
 		servo.write(rad);
 
-		delay(60); //서보모터가 움직이는 걸리는 시간을 줍니다.
+		delay(20); //서보모터가 움직이는 걸리는 시간을 줍니다.
 	}
 }
 

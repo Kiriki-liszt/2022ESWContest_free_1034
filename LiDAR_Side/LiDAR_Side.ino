@@ -26,7 +26,7 @@ DFRobot_TFmini	TFmini;
 
 uint16_t		distance;
 
-int				servoDirection = 2;
+int				servoDirection = 1;
 int				rad = 0; // rad는 각도를 의미합니다.
 
 const int		row = 5;
@@ -54,7 +54,7 @@ void setup() {
 void loop() {
 	if (TFmini.measure()) {
 		distance = TFmini.getDistance();
-		int modular = distance / 6;
+		int modular = distance / 5;
 
 		if (servoDirection<0) {
 			Serial.print("r");
@@ -183,7 +183,11 @@ void loop() {
 					delay(1000);                       // wait for a second
 					// digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
 				
-					first_flag = false;
+					for (int k=0; k<5; k++) {
+					for (int j = 0; j<5; j++) {
+						personarr[k][j] = new_personarr[k][j];
+					}
+				}
 				} else { LiDAR_flag = 0; }
 			}
 
@@ -195,19 +199,19 @@ void loop() {
 		}
 		Rotatemotor();
 	}
-	delay(20); //서보모터가 움직이는 걸리는 시간을 줍니다.
+	delay(40); //서보모터가 움직이는 걸리는 시간을 줍니다.
 }
 
 
 void Rotatemotor() {
 	rad += servoDirection;
 	if (rad > 90) {
-		servoDirection = -2;
+		servoDirection = -1;
 		rad -= 4;
 	
 	}
 	else if (rad < 0) {
-		servoDirection = +2;
+		servoDirection = 1;
 		rad += 4;
 	}
 	servo.write(rad);
