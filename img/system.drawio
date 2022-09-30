@@ -1,0 +1,18 @@
+<mxfile host="65bd71144e">
+    <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
+        <mxGraphModel dx="990" dy="574" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="WIyWlLk6GJQsqaUBKTNV-0"/>
+                <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0"/>
+                <mxCell id="107" value="System" style="swimlane;strokeWidth=1;fontSize=12;startSize=23;fontFamily=프리텐다드;html=1;fontSource=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FProject-Noonnu%2Fnoonfonts_2107%401.1%2FPretendard-Regular.woff;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+                    <mxGeometry x="59" y="70" width="710" height="482" as="geometry">
+                        <mxRectangle x="59" y="70" width="84" height="23" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="154" value="" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=프리텐다드;fontSource=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FProject-Noonnu%2Fnoonfonts_2107%401.1%2FPretendard-Regular.woff;" vertex="1" parent="107">
+                    <mxGeometry x="99" y="112" width="120" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
