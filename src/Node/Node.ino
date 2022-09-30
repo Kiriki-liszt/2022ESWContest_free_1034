@@ -99,6 +99,7 @@ void nRF_message_parsing() {
 	}
 }
 
+/*
 void nRF_message_print() {
 	Serial.println("start");
 	Serial.print("ss : ");	Serial.println(nRF_read_buff);
@@ -109,7 +110,7 @@ void nRF_message_print() {
 	Serial.print("rtf : ");	Serial.println(status_flag[0]);
 	Serial.println("end\n");
 }
-
+*/
 
 
 

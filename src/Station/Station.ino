@@ -164,8 +164,6 @@ void I2C_Req(int slaves) {
 // 상태는 총 4개 : 00, 01, 10, 11
 // 상황은 앞에서부터 차례대로 우회전, 비보호, 로터리 등등
 void nRF_make_signal() { 
-	// TIME_ALART 사용
-	
 	if (LiDAR_data[0] == 1) {
 		right_turn = 1;
 	} else if (LiDAR_data[1] == 1) {
