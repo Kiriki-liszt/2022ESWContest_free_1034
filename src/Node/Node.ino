@@ -43,7 +43,7 @@ void setup() {
 	myDFPlayer.volume(30);  //Set volume value (0~30).
 	myDFPlayer.EQ(DFPLAYER_EQ_NORMAL);
 	myDFPlayer.outputDevice(DFPLAYER_DEVICE_SD);
-	// 1 : 운전 그렇게 하는거 아닌데
+	// 1 : 경고
 	// 2 : 우회전 불가능
 	// 3 : 우회전 가능
 	// 4 : 전방 500m
