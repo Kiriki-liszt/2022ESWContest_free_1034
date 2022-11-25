@@ -9,7 +9,7 @@
   * <https://github.com/stm32duino/BoardManagerFiles/raw/main/package_stmicroelectronics_index.json>  
 
 * 라이브러리
-  * RF24  
+  * RF24 - TMRh20  
   * <https://github.com/Cesar-S/DFRobot_TFmini>  
   * <https://github.com/DFRobot/DFRobotDFPlayerMini>
 
