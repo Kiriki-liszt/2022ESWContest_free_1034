@@ -9,9 +9,9 @@
   * <https://github.com/stm32duino/BoardManagerFiles/raw/main/package_stmicroelectronics_index.json>  
 
 * 라이브러리
-  * RF24 - TMRh20  
-  * <https://github.com/Cesar-S/DFRobot_TFmini>  
-  * <https://github.com/DFRobot/DFRobotDFPlayerMini>
+  * 아두이노 내부에서 바로 다운로드 : RF24 - TMRh20  
+  * 깁헙에서 .zip으로 다운로드, .zip으로 로드 : <https://github.com/Cesar-S/DFRobot_TFmini>  
+  * 깁헙에서 .zip으로 다운로드, .zip으로 로드 : <https://github.com/DFRobot/DFRobotDFPlayerMini>
 
 ## 내가 한 것들
 
